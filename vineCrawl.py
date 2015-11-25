@@ -24,14 +24,19 @@ class vineCrawler(Exception):
 		self.popular = requests.get("https://api.vineapp.com/timelines/popular")
 		return self.popular
 
+	def collectJSON(self,jsonObject):
+		with open('data.txt', 'w') as outfile:
+			json.dump(jsonObject.json(),outfile)
+
 
 if __name__ == '__main__':
 	print "initiating Vine Crawler from the popualr ones"
 	procPool = Pool(12)
 
-	crawler = vineCrawler();
-	popular = crawler.getPopular();
-	print popular
+	crawler = vineCrawler()
+	popular = crawler.getPopular()
+	crawler.collectJSON(popular)
+	
 
 
 
