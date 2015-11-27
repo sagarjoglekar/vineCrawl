@@ -52,14 +52,14 @@ class parsePopular(Exception):
 			subRecord = records[i]
 			print subRecord
 			
-			argsProfile = ['wget', '-r', '-l', '1', '-p', '-P','-nd' , self._profileDir, subRecord['avatarUrl']]
+			argsProfile = ['wget', '-r', '-l', '1', '-p', '-P', self._profileDir, subRecord['avatarUrl']]
 			procRegister.append(Popen(argsProfile))
 
 			videoUrl = subRecord['videoDashUrl'].split('?');
-			argsVideo = ['wget', '-r', '-l', '1', '-p', '-P' , '-nd', self._videoDir, videoUrl[0]]
+			argsVideo = ['wget', '-r', '-l', '1', '-p', '-P' , self._videoDir, videoUrl[0]]
 			procRegister.append(Popen(argsVideo))
 
-			argsPage = ['wget', '-r', '-l', '1', '-p', '-P','-nd', self._profileDir, subRecord['permalinkUrl']]
+			argsPage = ['wget', '-r', '-l', '1', '-p', '-P', self._profileDir, subRecord['permalinkUrl']]
 			procRegister.append(Popen(argsPage))
 
 		print "Created " + str(len(procRegister)) + 'processes'
