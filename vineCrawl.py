@@ -1,41 +1,39 @@
 #Trying to use Vine API to get some videos
 
 import re
-import datetime as dt
-from datetime import datetime
-import time
-import random
 import json
 import sys
-import requests
+import os.path
+from getPopular import vineCrawler
+from getPopular import parsePopular	
 from multiprocessing import Pool
 
-
-class vineCrawler(Exception):
-	def __init__(self):
-		self.name = "Vine Crawler"
-		self.popular = None
-
-	def now_time(self):
-   		now=dt.datetime.now()
-   		return int(time.mktime(now.timetuple()))
-
-   	def getPopular(self):
-		self.popular = requests.get("https://api.vineapp.com/timelines/popular")
-		return self.popular
-
-	def collectJSON(self,jsonObject):
-		with open('data.txt', 'w') as outfile:
-			json.dump(jsonObject.json(),outfile)
 
 
 if __name__ == '__main__':
 	print "initiating Vine Crawler from the popualr ones"
 	procPool = Pool(12)
+	crawler = vineCrawler(procPool)
+	files = [f for f in os.listdir('.') if re.match(r'popular*', f)]
+	if not files :
+		popular = crawler.getPopular()
+		crawler.collectJSON(popular)
+	else :
+		with open(files[0]) as data_file:
+			popular = json.load(data_file)
+			#print popular
+			print popular['data']['count']
+			print popular['data']['records'][1]
 
-	crawler = vineCrawler()
-	popular = crawler.getPopular()
-	crawler.collectJSON(popular)
+
+	parser = parsePopular(popular,procPool)
+	parser.decomposePopular()
+
+
+
+
+
+
 	
 
 
