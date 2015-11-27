@@ -59,8 +59,8 @@ class parsePopular(Exception):
 			argsVideo = ['wget', '-r', '-l', '1', '-p', '-P' , self._videoDir, videoUrl[0]]
 			procRegister.append(Popen(argsVideo))
 
-			argsPage = ['wget', '-r', '-l', '1', '-p', '-P', self._profileDir, subRecord['permalinkUrl']]
-			procRegister.append(Popen(argsPage))
+		#	argsPage = ['wget', '-r', '-l', '1', '-p', '-P', self._profileDir, subRecord['permalinkUrl']]
+		#	procRegister.append(Popen(argsPage))
 
 		print "Created " + str(len(procRegister)) + 'processes'
 
