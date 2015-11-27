@@ -4,30 +4,34 @@ import re
 import json
 import sys
 import os.path
-from getPopular import vineCrawler
-from getPopular import parsePopular	
+from getPopular import *
 from multiprocessing import Pool
 
-
+def now_time():
+   		now=dt.datetime.now()
+   		return int(time.mktime(now.timetuple()))
 
 if __name__ == '__main__':
 	print "initiating Vine Crawler from the popualr ones"
 	procPool = Pool(12)
-	crawler = vineCrawler(procPool)
-	files = [f for f in os.listdir('.') if re.match(r'popular*', f)]
-	if not files :
-		popular = crawler.getPopular()
-		crawler.collectJSON(popular)
-	else :
-		with open(files[0]) as data_file:
-			popular = json.load(data_file)
-			#print popular
-			print popular['data']['count']
-			print popular['data']['records'][1]
 
+	while True:
+		timeStamp = now_time()
+		os.makedirs(str(timeStamp))
 
-	parser = parsePopular(popular,procPool)
-	parser.decomposePopular()
+		crawler = vineCrawler(procPool, str(timeStamp))
+		popular = crawler.getPopular()		
+
+		parser = parsePopular(popular , procPool,str(timeStamp))
+		procRegister = parser.decomposePopular()
+		time.sleep(900)
+		for i in range(0 , len(procRegister)):
+			Popen.kill(procRegister[i])
+		
+		print "Cleaned up past processes : " + str(len(procRegister))
+
+		time.sleep(60)
+
 
 
 
