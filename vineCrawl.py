@@ -17,19 +17,17 @@ if __name__ == '__main__':
 	procRegister = []
 	crawler = vineCrawler(procPool)
 	parser = parsePopular(procPool)
-	while True:
-		timeStamp = now_time()
-		os.makedirs(str(timeStamp))
-		popular = crawler.getPopular(str(timeStamp))		
-		procRegister = parser.decomposePopular(popular, str(timeStamp))
-		time.sleep(120)
-		for i in range(0 , len(procRegister)):
-			Popen.kill(procRegister[i])
-			print "Proceess Killed"
-		procRegister = [];
-		print "Cleaned up past processes : " + str(len(procRegister))
 
-		time.sleep(10)
+	timeStamp = now_time()
+	os.makedirs(str(timeStamp))
+	popular = crawler.getPopular(str(timeStamp))		
+	procRegister = parser.decomposePopular(popular, str(timeStamp))
+	for i in range(0 , len(procRegister)):
+		Popen.kill(procRegister[i])
+		print "Proceess Killed"
+	procRegister = [];
+	print "Cleaned up past processes : " + str(len(procRegister))
+	time.sleep(10)
 
 
 
