@@ -13,24 +13,22 @@ def now_time():
 
 if __name__ == '__main__':
 	print "initiating Vine Crawler from the popualr ones"
-	procPool = Pool(12)
+	procPool = Pool(1)
+	procRegister = []
+	crawler = vineCrawler(procPool)
+	parser = parsePopular(procPool)
 
-	while True:
-		timeStamp = now_time()
-		os.makedirs(str(timeStamp))
-
-		crawler = vineCrawler(procPool, str(timeStamp))
-		popular = crawler.getPopular()		
-
-		parser = parsePopular(popular , procPool,str(timeStamp))
-		procRegister = parser.decomposePopular()
-		time.sleep(900)
-		for i in range(0 , len(procRegister)):
-			Popen.kill(procRegister[i])
-		
-		print "Cleaned up past processes : " + str(len(procRegister))
-
-		time.sleep(60)
+	timeStamp = now_time()
+	rootDir = "Data/" + str(timeStamp)
+	os.makedirs(rootDir)
+	popular = crawler.getPopular(rootDir)		
+	procRegister = parser.decomposePopular(popular, rootDir)
+	for i in range(0 , len(procRegister)):
+		Popen.kill(procRegister[i])
+		print "Proceess Killed"
+	procRegister = [];
+	print "Cleaned up past processes : " + str(len(procRegister))
+	time.sleep(10)
 
 
 
