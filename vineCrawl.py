@@ -19,9 +19,10 @@ if __name__ == '__main__':
 	parser = parsePopular(procPool)
 
 	timeStamp = now_time()
-	os.makedirs(str(timeStamp))
-	popular = crawler.getPopular(str(timeStamp))		
-	procRegister = parser.decomposePopular(popular, str(timeStamp))
+	rootDir = "Data/" + str(timeStamp)
+	os.makedirs(rootDir)
+	popular = crawler.getPopular(rootDir)		
+	procRegister = parser.decomposePopular(popular, rootDir)
 	for i in range(0 , len(procRegister)):
 		Popen.kill(procRegister[i])
 		print "Proceess Killed"
