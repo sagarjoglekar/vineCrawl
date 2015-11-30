@@ -24,7 +24,7 @@ class vineCrawler(Exception):
 		self._procPool = procPool
 
    	def getPopular(self, rootDir):
-		self._popular = requests.get("https://api.vineapp.com/timelines/popular")
+		self._popular = requests.get("https://api.vineapp.com/timelines/popular?size=100")
 		f = open(rootDir + '/popular' + '.json', 'w')
 		json.dump(self._popular.json(), f)
 		return self._popular.json()
