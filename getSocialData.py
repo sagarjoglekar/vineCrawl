@@ -20,10 +20,6 @@ root ="Data/"
 timeline = "userTimeline"
 postData = "postData"
 
-def now_time():
-	now=dt.datetime.now()
-	return int(time.mktime(now.timetuple()))
-
 def getVisited():
 	visited = []
 	try:
