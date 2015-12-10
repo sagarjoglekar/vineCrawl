@@ -34,7 +34,7 @@ def now_time():
 	now=dt.datetime.now()
 	return int(time.mktime(now.timetuple()))
 
-def callCmd(self,args):
+def callCmd(args):
 		call(args)
 
 
@@ -47,11 +47,34 @@ if __name__ == '__main__':
 	for i in range(1,18):
 		
 		typeDir = workingDir + "/" + str(i)
+		videoDir = typeDir + "/videos"
+		avatarDir = typeDir + "/avatars"
 		os.makedirs( typeDir )
+		os.makedirs( videoDir )
+		os.makedirs( avatarDir )
 		
-		channelRecent = requests.get("https://vine.co/api/timelines/channels/" + str(i) + "/recent" + "?size=50")
+		channelRecent = requests.get("https://vine.co/api/timelines/channels/" + str(i) + "/recent" + "?size=100")
 		f = open(typeDir + "/" + str(i) +'.json', 'w')
-		json.dump(channelRecent.json(), f)
+		channelJson = channelRecent.json()
+		json.dump(channelJson, f)
+
+		data = channelJson['data']
+		records = data['records']
+
+		for i in range (0 , len(records)):
+			subRecord = records[i]
+			print subRecord
+			
+			argsProfile = ['wget', '-r', '-nd', '-l', '1', '-p', '-P', avatarDir, subRecord['avatarUrl']]
+			callCmd(argsProfile);
+
+			videoString = subRecord['videoDashUrl']
+                        if videoString:
+                            videoUrl = subRecord['videoDashUrl'].split('?');
+			    argsVideo = ['wget', '-r', '-nd', '-l', '1', '-p', '-P' , videoDir, videoUrl[0]]
+			    callCmd(argsVideo);
+		time.sleep(30)
+
 
 
 	
