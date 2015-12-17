@@ -42,6 +42,7 @@ if __name__ == '__main__':
     try: fn = sys.argv[1]
     except: fn = 0
     cap = cv2.VideoCapture(fn)
+    print cap
 
 
     def process_frame(frame, t0):
@@ -69,6 +70,10 @@ if __name__ == '__main__':
             cv2.imshow('threaded video', res)
         if len(pending) < threadn:
             ret, frame = cap.read()
+            if ret :
+                print frame.shape
+            else:
+                break
             t = clock()
             frame_interval.update(t - last_frame_time)
             last_frame_time = t
