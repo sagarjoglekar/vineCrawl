@@ -48,9 +48,13 @@ if __name__ == '__main__':
 
 
     def process_frame(frame, t0):
+        print frame.shape
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        cv2.waitKey(20)
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-        print faces     
+        print faces
+        faces = []
+        gray = []
         return frame, t0
 
     threadn = cv2.getNumberOfCPUs()
@@ -64,24 +68,25 @@ if __name__ == '__main__':
     last_frame_time = clock()
     
     while True:
+        
         while len(pending) > 0 and pending[0].ready():
             res, t0 = pending.popleft().get()
             latency.update(clock() - t0)
             draw_str(res, (20, 20), "threaded      :  " + str(threaded_mode))
             draw_str(res, (20, 40), "latency        :  %.1f ms" % (latency.value*1000))
             draw_str(res, (20, 60), "frame interval :  %.1f ms" % (frame_interval.value*1000))
-            cv2.imshow('threaded video', res)
+            #cv2.imshow('threaded video', res)
         if len(pending) < threadn:
             ret, frame = cap.read()
+            cv2.waitKey(40)
             if ret :
-                print frame.shape
-            else:
+                t = clock()
+                frame_interval.update(t - last_frame_time)
+                last_frame_time = t
+                task = pool.apply_async(process_frame, (frame, t))
+                pending.append(task)
+            else :
                 break
-            t = clock()
-            frame_interval.update(t - last_frame_time)
-            last_frame_time = t
-            task = pool.apply_async(process_frame, (frame.copy(), t))
-            pending.append(task)
         
         ch = 0xFF & cv2.waitKey(1)
 
