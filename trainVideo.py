@@ -51,10 +51,9 @@ if __name__ == '__main__':
         print frame.shape
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         cv2.waitKey(20)
-        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-        print faces
         faces = []
-        gray = []
+        faces = face_cascade.detectMultiScale(frame, 1.3, 5)
+        #print faces.shape
         return frame, t0
 
     threadn = cv2.getNumberOfCPUs()
