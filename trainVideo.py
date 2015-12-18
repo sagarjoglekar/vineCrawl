@@ -38,6 +38,8 @@ if __name__ == '__main__':
     import sys
 
     print __doc__
+    face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
+    #eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 
     try: fn = sys.argv[1]
     except: fn = 0
@@ -46,8 +48,9 @@ if __name__ == '__main__':
 
 
     def process_frame(frame, t0):
-        # some intensive computation...
-        #frame = cv2.equalizeHist(frame)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        print faces     
         return frame, t0
 
     threadn = cv2.getNumberOfCPUs()
