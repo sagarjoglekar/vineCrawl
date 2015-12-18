@@ -53,7 +53,7 @@ if __name__ == '__main__':
         cv2.waitKey(20)
         faces = []
         faces = face_cascade.detectMultiScale(frame, 1.3, 5)
-        #print faces.shape
+        print faces
         return frame, t0
 
     threadn = cv2.getNumberOfCPUs()
