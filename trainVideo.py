@@ -82,7 +82,8 @@ if __name__ == '__main__':
                 t = clock()
                 frame_interval.update(t - last_frame_time)
                 last_frame_time = t
-                task = pool.apply_async(process_frame, (frame, t))
+                #task = pool.apply_async(process_frame, (frame, t))
+                task = DummyTask(process_frame(frame, t))
                 pending.append(task)
             else :
                 break
