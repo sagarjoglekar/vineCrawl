@@ -63,7 +63,7 @@ f = theano.function([input], output)
 
 
 # open random image of dimensions 639x516
-img = Image.open(open('doc/images/3wolfmoon.jpg'))
+img = Image.open(open('3wolfmoon.jpg'))
 # dimensions are (height, width, channel)
 img = numpy.asarray(img, dtype='float64') / 256.
 
