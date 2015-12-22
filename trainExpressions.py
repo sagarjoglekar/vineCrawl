@@ -2,7 +2,8 @@ import theano
 from theano import tensor as T
 from theano.tensor.nnet import conv
 from PIL import Image
-import pylab
+import matplotlib.pyplot as plt
+import matplotlib.cbook as cbook
 
 import numpy
 
@@ -65,17 +66,16 @@ f = theano.function([input], output)
 # open random image of dimensions 639x516
 img = Image.open(open('3wolfmoon.jpg'))
 # dimensions are (height, width, channel)
-img = numpy.asarray(img, dtype='float64') / 256.
+img = numpy.asarray(img, dtype='float32') / 256.
 
 # put image in 4D tensor of shape (1, 3, height, width)
 img_ = img.transpose(2, 0, 1).reshape(1, 3, 639, 516)
 filtered_img = f(img_)
-
 # plot original image and first and second components of output
-pylab.subplot(1, 3, 1); pylab.axis('off'); pylab.imshow(img)
-pylab.gray();
+plt.subplot(1, 3, 1); plt.axis('off'); plt.imshow(img)
+plt.gray();
 # recall that the convOp output (filtered image) is actually a "minibatch",
 # of size 1 here, so we take index 0 in the first dimension:
-pylab.subplot(1, 3, 2); pylab.axis('off'); pylab.imshow(filtered_img[0, 0, :, :])
-pylab.subplot(1, 3, 3); pylab.axis('off'); pylab.imshow(filtered_img[0, 1, :, :])
-pylab.show()
+plt.subplot(1, 3, 2); plt.axis('off'); plt.imshow(filtered_img[0, 0, :, :])
+plt.subplot(1, 3, 3); plt.axis('off'); plt.imshow(filtered_img[0, 1, :, :])
+plt.show()
