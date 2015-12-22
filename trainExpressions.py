@@ -2,7 +2,7 @@ import theano
 from theano import tensor as T
 from theano.tensor.nnet import conv
 from PIL import Image
-
+import pylab
 
 import numpy
 
