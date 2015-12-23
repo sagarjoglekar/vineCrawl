@@ -24,7 +24,7 @@ class vineCrawler(Exception):
 		self._procPool = procPool
 
    	def getPopular(self, rootDir):
-		self._popular = requests.get("https://api.vineapp.com/timelines/popular")
+		self._popular = requests.get("https://api.vineapp.com/timelines/popular?size=100")
 		f = open(rootDir + '/popular' + '.json', 'w')
 		json.dump(self._popular.json(), f)
 		return self._popular.json()
@@ -57,10 +57,12 @@ class parsePopular(Exception):
 			#procRegister.append(Popen(argsProfile))
 			self.callCmd(argsProfile);
 
-			videoUrl = subRecord['videoDashUrl'].split('?');
-			argsVideo = ['wget', '-r', '-l', '1', '-p', '-P' , videoDir, videoUrl[0]]
-			#procRegister.append(Popen(argsVideo))
-			self.callCmd(argsVideo);
+			videoString = subRecord['videoDashUrl']
+                        if videoString:
+                            videoUrl = subRecord['videoDashUrl'].split('?');
+			    argsVideo = ['wget', '-r', '-l', '1', '-p', '-P' , videoDir, videoUrl[0]]
+			    #procRegister.append(Popen(argsVideo))
+			    self.callCmd(argsVideo);
 
 		#	argsPage = ['wget', '-r', '-l', '1', '-p', '-P', self._profileDir, subRecord['permalinkUrl']]
 		#	procRegister.append(Popen(argsPage))
