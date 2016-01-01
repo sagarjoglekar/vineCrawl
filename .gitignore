@@ -7,3 +7,5 @@ Data
 *.data
 fer2013.csv
 Channels
+nohup.out
+.ipynb_checkpoints/
