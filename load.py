@@ -1,7 +1,9 @@
 import numpy as np
 import os
+import pandas as pd
 
-datasets_dir = '/Users/sagarjoglekar/Work/MNIST'
+datasets_dir = '/datasets/sagarj/MNIST'
+faces_dir = '/datasets/sagarj/ImageDataSet/faces'
 
 def one_hot(x,n):
 	if type(x) == list:
@@ -46,3 +48,26 @@ def mnist(ntrain=60000,ntest=10000,onehot=True):
 		teY = np.asarray(teY)
 
 	return trX,teX,trY,teY
+
+
+def faces(ntrain=28709,ntest=3589,onehot = True):
+    data_dir = os.path.join(faces_dir,'fer2013/fer2013.csv')
+    dataset = pd.read_csv( data_dir )
+    
+    trX = np.zeros((28709,48*48),dtype=np.uint8)
+    trY = np.zeros((28709,7), dtype=np.int)
+    for i in range(0,28709 ):
+        trX[i] = np.asarray(dataset.values[i][1].split(" ") , dtype=np.uint8)
+        label = dataset.values[i][0]
+        trY[i][label] = 1;
+
+    teX = np.zeros((3589,48*48),dtype=np.uint8)
+    teY = np.zeros((3589,7), dtype=np.int)
+    trainingBias = 28709
+    for i in range(0,3589):
+        teX[i] = np.asarray(dataset.values[trainingBias + i][1].split(" ") , dtype=np.uint8)
+        label = dataset.values[trainingBias + i][0]
+        teY[i][label] = 1; 
+    
+    return trX,teX,trY,teY
+
