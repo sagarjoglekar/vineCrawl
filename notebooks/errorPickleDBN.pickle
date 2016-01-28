@@ -1,0 +1,23 @@
+S'... building the model'
+p0
+.S'... getting the pretraining functions'
+p0
+.S'... pre-training the model'
+p0
+.S'Pre-training layer: 0epoch: 0mean: 4.4779e+12'
+p0
+.S'Pre-training layer: 0epoch: 1mean: 1.3973e+13'
+p0
+.S'Pre-training layer: 0epoch: 2mean: 2.36215e+13'
+p0
+.S'Pre-training layer: 0epoch: 3mean: 3.32737e+13'
+p0
+.S'Pre-training layer: 0epoch: 4mean: 4.29292e+13'
+p0
+.S'Pre-training layer: 0epoch: 5mean: 5.25861e+13'
+p0
+.S'Pre-training layer: 0epoch: 6mean: 6.22431e+13'
+p0
+.S'Pre-training layer: 0epoch: 7mean: 7.19001e+13'
+p0
+.
