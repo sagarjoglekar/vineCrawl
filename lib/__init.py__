@@ -6,3 +6,5 @@ from common import *
 from dbn import DBN
 from logistic_sgd import *
 from mlp import MLP
+from dA import *
+from sda import *

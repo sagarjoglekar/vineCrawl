@@ -91,7 +91,11 @@ class HiddenLayer(object):
                 W_values *= 4
 
             W = theano.shared(value=W_values, name='W', borrow=True)
+        
 
+        print "FC layer W matrix size : " + str(n_in) + " X " + str(n_out)
+        print "FC layer Bias size : " + str(n_out) + " X " + "1"
+        
         if b is None:
             b_values = numpy.zeros((n_out,), dtype=theano.config.floatX)
             b = theano.shared(value=b_values, name='b', borrow=True)

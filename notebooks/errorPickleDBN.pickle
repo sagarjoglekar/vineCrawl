@@ -4,20 +4,1086 @@ p0
 p0
 .S'... pre-training the model'
 p0
-.S'Pre-training layer: 0epoch: 0mean: 4.4779e+12'
+.S'Pre-training layer: 0epoch: 0mean: 8.5296e+11'
 p0
-.S'Pre-training layer: 0epoch: 1mean: 1.3973e+13'
+.S'Pre-training layer: 0epoch: 1mean: 2.58392e+12'
 p0
-.S'Pre-training layer: 0epoch: 2mean: 2.36215e+13'
+.S'Pre-training layer: 0epoch: 2mean: 4.32291e+12'
 p0
-.S'Pre-training layer: 0epoch: 3mean: 3.32737e+13'
+.S'Pre-training layer: 0epoch: 3mean: 6.06333e+12'
 p0
-.S'Pre-training layer: 0epoch: 4mean: 4.29292e+13'
+.S'Pre-training layer: 0epoch: 4mean: 7.80375e+12'
 p0
-.S'Pre-training layer: 0epoch: 5mean: 5.25861e+13'
+.S'Pre-training layer: 0epoch: 5mean: 9.54409e+12'
 p0
-.S'Pre-training layer: 0epoch: 6mean: 6.22431e+13'
+.S'Pre-training layer: 0epoch: 6mean: 1.12843e+13'
 p0
-.S'Pre-training layer: 0epoch: 7mean: 7.19001e+13'
+.S'Pre-training layer: 0epoch: 7mean: 1.30245e+13'
+p0
+.S'Pre-training layer: 0epoch: 8mean: 1.47646e+13'
+p0
+.S'Pre-training layer: 0epoch: 9mean: 1.6505e+13'
+p0
+.S'Pre-training layer: 0epoch: 10mean: 1.82479e+13'
+p0
+.S'Pre-training layer: 0epoch: 11mean: 1.99917e+13'
+p0
+.S'Pre-training layer: 0epoch: 12mean: 2.17356e+13'
+p0
+.S'Pre-training layer: 0epoch: 13mean: 2.34794e+13'
+p0
+.S'Pre-training layer: 0epoch: 14mean: 2.52233e+13'
+p0
+.S'Pre-training layer: 0epoch: 15mean: 2.69671e+13'
+p0
+.S'Pre-training layer: 0epoch: 16mean: 2.8711e+13'
+p0
+.S'Pre-training layer: 0epoch: 17mean: 3.04549e+13'
+p0
+.S'Pre-training layer: 0epoch: 18mean: 3.21988e+13'
+p0
+.S'Pre-training layer: 0epoch: 19mean: 3.39429e+13'
+p0
+.S'Pre-training layer: 0epoch: 20mean: 3.56871e+13'
+p0
+.S'Pre-training layer: 0epoch: 21mean: 3.74314e+13'
+p0
+.S'Pre-training layer: 0epoch: 22mean: 3.91759e+13'
+p0
+.S'Pre-training layer: 0epoch: 23mean: 4.09205e+13'
+p0
+.S'Pre-training layer: 0epoch: 24mean: 4.26652e+13'
+p0
+.S'Pre-training layer: 0epoch: 25mean: 4.441e+13'
+p0
+.S'Pre-training layer: 0epoch: 26mean: 4.61549e+13'
+p0
+.S'Pre-training layer: 0epoch: 27mean: 4.78998e+13'
+p0
+.S'Pre-training layer: 0epoch: 28mean: 4.96447e+13'
+p0
+.S'Pre-training layer: 0epoch: 29mean: 5.13896e+13'
+p0
+.S'Pre-training layer: 0epoch: 30mean: 5.31345e+13'
+p0
+.S'Pre-training layer: 0epoch: 31mean: 5.48794e+13'
+p0
+.S'Pre-training layer: 0epoch: 32mean: 5.66243e+13'
+p0
+.S'Pre-training layer: 0epoch: 33mean: 5.83692e+13'
+p0
+.S'Pre-training layer: 0epoch: 34mean: 6.01141e+13'
+p0
+.S'Pre-training layer: 0epoch: 35mean: 6.1859e+13'
+p0
+.S'Pre-training layer: 0epoch: 36mean: 6.36039e+13'
+p0
+.S'Pre-training layer: 0epoch: 37mean: 6.53488e+13'
+p0
+.S'Pre-training layer: 0epoch: 38mean: 6.70937e+13'
+p0
+.S'Pre-training layer: 0epoch: 39mean: 6.88386e+13'
+p0
+.S'Pre-training layer: 0epoch: 40mean: 7.05835e+13'
+p0
+.S'Pre-training layer: 0epoch: 41mean: 7.23284e+13'
+p0
+.S'Pre-training layer: 0epoch: 42mean: 7.40733e+13'
+p0
+.S'Pre-training layer: 0epoch: 43mean: 7.58182e+13'
+p0
+.S'Pre-training layer: 0epoch: 44mean: 7.7563e+13'
+p0
+.S'Pre-training layer: 0epoch: 45mean: 7.93079e+13'
+p0
+.S'Pre-training layer: 0epoch: 46mean: 8.10529e+13'
+p0
+.S'Pre-training layer: 0epoch: 47mean: 8.27977e+13'
+p0
+.S'Pre-training layer: 0epoch: 48mean: 8.45426e+13'
+p0
+.S'Pre-training layer: 0epoch: 49mean: 8.62875e+13'
+p0
+.S'Pre-training layer: 1epoch: 0mean: -3.00848'
+p0
+.S'Pre-training layer: 1epoch: 1mean: -1.73331'
+p0
+.S'Pre-training layer: 1epoch: 2mean: -1.45754'
+p0
+.S'Pre-training layer: 1epoch: 3mean: -1.30127'
+p0
+.S'Pre-training layer: 1epoch: 4mean: -1.24316'
+p0
+.S'Pre-training layer: 1epoch: 5mean: -1.22468'
+p0
+.S'Pre-training layer: 1epoch: 6mean: -1.20864'
+p0
+.S'Pre-training layer: 1epoch: 7mean: -1.19254'
+p0
+.S'Pre-training layer: 1epoch: 8mean: -1.17435'
+p0
+.S'Pre-training layer: 1epoch: 9mean: -1.14669'
+p0
+.S'Pre-training layer: 1epoch: 10mean: -1.12802'
+p0
+.S'Pre-training layer: 1epoch: 11mean: -1.09062'
+p0
+.S'Pre-training layer: 1epoch: 12mean: -1.04938'
+p0
+.S'Pre-training layer: 1epoch: 13mean: -1.01999'
+p0
+.S'Pre-training layer: 1epoch: 14mean: -0.984838'
+p0
+.S'Pre-training layer: 1epoch: 15mean: -0.958479'
+p0
+.S'Pre-training layer: 1epoch: 16mean: -0.904593'
+p0
+.S'Pre-training layer: 1epoch: 17mean: -0.853346'
+p0
+.S'Pre-training layer: 1epoch: 18mean: -0.813091'
+p0
+.S'Pre-training layer: 1epoch: 19mean: -0.756253'
+p0
+.S'Pre-training layer: 1epoch: 20mean: -0.694054'
+p0
+.S'Pre-training layer: 1epoch: 21mean: -0.625695'
+p0
+.S'Pre-training layer: 1epoch: 22mean: -0.548799'
+p0
+.S'Pre-training layer: 1epoch: 23mean: -0.479113'
+p0
+.S'Pre-training layer: 1epoch: 24mean: -0.393265'
+p0
+.S'Pre-training layer: 1epoch: 25mean: -0.321556'
+p0
+.S'Pre-training layer: 1epoch: 26mean: -0.252159'
+p0
+.S'Pre-training layer: 1epoch: 27mean: -0.218507'
+p0
+.S'Pre-training layer: 1epoch: 28mean: -0.196552'
+p0
+.S'Pre-training layer: 1epoch: 29mean: -0.185348'
+p0
+.S'Pre-training layer: 1epoch: 30mean: -0.17647'
+p0
+.S'Pre-training layer: 1epoch: 31mean: -0.167983'
+p0
+.S'Pre-training layer: 1epoch: 32mean: -0.16371'
+p0
+.S'Pre-training layer: 1epoch: 33mean: -0.157963'
+p0
+.S'Pre-training layer: 1epoch: 34mean: -0.156947'
+p0
+.S'Pre-training layer: 1epoch: 35mean: -0.155232'
+p0
+.S'Pre-training layer: 1epoch: 36mean: -0.158666'
+p0
+.S'Pre-training layer: 1epoch: 37mean: -0.155049'
+p0
+.S'Pre-training layer: 1epoch: 38mean: -0.150607'
+p0
+.S'Pre-training layer: 1epoch: 39mean: -0.15087'
+p0
+.S'Pre-training layer: 1epoch: 40mean: -0.149751'
+p0
+.S'Pre-training layer: 1epoch: 41mean: -0.147671'
+p0
+.S'Pre-training layer: 1epoch: 42mean: -0.145609'
+p0
+.S'Pre-training layer: 1epoch: 43mean: -0.147927'
+p0
+.S'Pre-training layer: 1epoch: 44mean: -0.154617'
+p0
+.S'Pre-training layer: 1epoch: 45mean: -0.147074'
+p0
+.S'Pre-training layer: 1epoch: 46mean: -0.148381'
+p0
+.S'Pre-training layer: 1epoch: 47mean: -0.147245'
+p0
+.S'Pre-training layer: 1epoch: 48mean: -0.143057'
+p0
+.S'Pre-training layer: 1epoch: 49mean: -0.141361'
+p0
+.S'Pre-training layer: 2epoch: 0mean: -1.39727'
+p0
+.S'Pre-training layer: 2epoch: 1mean: -0.282646'
+p0
+.S'Pre-training layer: 2epoch: 2mean: -0.232022'
+p0
+.S'Pre-training layer: 2epoch: 3mean: -0.183889'
+p0
+.S'Pre-training layer: 2epoch: 4mean: -0.153603'
+p0
+.S'Pre-training layer: 2epoch: 5mean: -0.126422'
+p0
+.S'Pre-training layer: 2epoch: 6mean: -0.114074'
+p0
+.S'Pre-training layer: 2epoch: 7mean: -0.107192'
+p0
+.S'Pre-training layer: 2epoch: 8mean: -0.100434'
+p0
+.S'Pre-training layer: 2epoch: 9mean: -0.0961115'
+p0
+.S'Pre-training layer: 2epoch: 10mean: -0.0943229'
+p0
+.S'Pre-training layer: 2epoch: 11mean: -0.092437'
+p0
+.S'Pre-training layer: 2epoch: 12mean: -0.0899759'
+p0
+.S'Pre-training layer: 2epoch: 13mean: -0.0886423'
+p0
+.S'Pre-training layer: 2epoch: 14mean: -0.0874113'
+p0
+.S'Pre-training layer: 2epoch: 15mean: -0.0868895'
+p0
+.S'Pre-training layer: 2epoch: 16mean: -0.0857338'
+p0
+.S'Pre-training layer: 2epoch: 17mean: -0.0854113'
+p0
+.S'Pre-training layer: 2epoch: 18mean: -0.0834456'
+p0
+.S'Pre-training layer: 2epoch: 19mean: -0.0836681'
+p0
+.S'Pre-training layer: 2epoch: 20mean: -0.0832031'
+p0
+.S'Pre-training layer: 2epoch: 21mean: -0.0824886'
+p0
+.S'Pre-training layer: 2epoch: 22mean: -0.0820868'
+p0
+.S'Pre-training layer: 2epoch: 23mean: -0.0823647'
+p0
+.S'Pre-training layer: 2epoch: 24mean: -0.082186'
+p0
+.S'Pre-training layer: 2epoch: 25mean: -0.0817268'
+p0
+.S'Pre-training layer: 2epoch: 26mean: -0.0809837'
+p0
+.S'Pre-training layer: 2epoch: 27mean: -0.08047'
+p0
+.S'Pre-training layer: 2epoch: 28mean: -0.0804097'
+p0
+.S'Pre-training layer: 2epoch: 29mean: -0.0799848'
+p0
+.S'Pre-training layer: 2epoch: 30mean: -0.0806039'
+p0
+.S'Pre-training layer: 2epoch: 31mean: -0.0805191'
+p0
+.S'Pre-training layer: 2epoch: 32mean: -0.0795298'
+p0
+.S'Pre-training layer: 2epoch: 33mean: -0.0799393'
+p0
+.S'Pre-training layer: 2epoch: 34mean: -0.0795145'
+p0
+.S'Pre-training layer: 2epoch: 35mean: -0.0795678'
+p0
+.S'Pre-training layer: 2epoch: 36mean: -0.0792128'
+p0
+.S'Pre-training layer: 2epoch: 37mean: -0.0791013'
+p0
+.S'Pre-training layer: 2epoch: 38mean: -0.079136'
+p0
+.S'Pre-training layer: 2epoch: 39mean: -0.0788439'
+p0
+.S'Pre-training layer: 2epoch: 40mean: -0.0784361'
+p0
+.S'Pre-training layer: 2epoch: 41mean: -0.0785878'
+p0
+.S'Pre-training layer: 2epoch: 42mean: -0.0781893'
+p0
+.S'Pre-training layer: 2epoch: 43mean: -0.078233'
+p0
+.S'Pre-training layer: 2epoch: 44mean: -0.0779878'
+p0
+.S'Pre-training layer: 2epoch: 45mean: -0.078121'
+p0
+.S'Pre-training layer: 2epoch: 46mean: -0.0777137'
+p0
+.S'Pre-training layer: 2epoch: 47mean: -0.0781308'
+p0
+.S'Pre-training layer: 2epoch: 48mean: -0.0776234'
+p0
+.S'Pre-training layer: 2epoch: 49mean: -0.0774011'
+p0
+.S'... Finished pre-training in :2.04621251822min'
+p0
+.S'----Getting Finetuning-----'
+p0
+.S'------finetuning the model------'
+p0
+.S'epoch: 1minibatch: 478validation error: 75.0847457627'
+p0
+.S'epoch: 1minibatch: 478Test error: 75.0847457627'
+p0
+.S'epoch: 2minibatch: 478validation error: 75.0847457627'
+p0
+.S'epoch: 3minibatch: 478validation error: 75.0847457627'
+p0
+.S'epoch: 4minibatch: 478validation error: 75.0847457627'
+p0
+.S'epoch: 5minibatch: 478validation error: 75.0847457627'
+p0
+.S'... Finished finetuning in :0.00360429286957seconds'
+p0
+.S'... Optimization complete with best validation socre of: 75.0847457627in iterations: 2 With test score: 75.0847457627'
+p0
+.S'... building the model'
+p0
+.S'... getting the pretraining functions'
+p0
+.S'... pre-training the model'
+p0
+.S'... building the model'
+p0
+.S'... getting the pretraining functions'
+p0
+.S'... pre-training the model'
+p0
+.S'Pre-training layer: 0epoch: 0mean: -91.4509'
+p0
+.S'Pre-training layer: 0epoch: 1mean: -80.7183'
+p0
+.S'Pre-training layer: 0epoch: 2mean: -78.4878'
+p0
+.S'Pre-training layer: 0epoch: 3mean: -77.1526'
+p0
+.S'Pre-training layer: 0epoch: 4mean: -76.2263'
+p0
+.S'Pre-training layer: 0epoch: 5mean: -75.5678'
+p0
+.S'Pre-training layer: 0epoch: 6mean: -75.0714'
+p0
+.S'Pre-training layer: 0epoch: 7mean: -74.6168'
+p0
+.S'Pre-training layer: 0epoch: 8mean: -74.2909'
+p0
+.S'Pre-training layer: 0epoch: 9mean: -73.9718'
+p0
+.S'Pre-training layer: 0epoch: 10mean: -73.7257'
+p0
+.S'Pre-training layer: 0epoch: 11mean: -73.5686'
+p0
+.S'Pre-training layer: 0epoch: 12mean: -73.3917'
+p0
+.S'Pre-training layer: 0epoch: 13mean: -73.2498'
+p0
+.S'Pre-training layer: 0epoch: 14mean: -73.0812'
+p0
+.S'Pre-training layer: 0epoch: 15mean: -72.9945'
+p0
+.S'Pre-training layer: 0epoch: 16mean: -72.8947'
+p0
+.S'Pre-training layer: 0epoch: 17mean: -72.8047'
+p0
+.S'Pre-training layer: 0epoch: 18mean: -72.7263'
+p0
+.S'Pre-training layer: 0epoch: 19mean: -72.6806'
+p0
+.S'Pre-training layer: 0epoch: 20mean: -72.5424'
+p0
+.S'Pre-training layer: 0epoch: 21mean: -72.5249'
+p0
+.S'Pre-training layer: 0epoch: 22mean: -72.4612'
+p0
+.S'Pre-training layer: 0epoch: 23mean: -72.4438'
+p0
+.S'Pre-training layer: 0epoch: 24mean: -72.3739'
+p0
+.S'Pre-training layer: 0epoch: 25mean: -72.3155'
+p0
+.S'Pre-training layer: 0epoch: 26mean: -72.2616'
+p0
+.S'Pre-training layer: 0epoch: 27mean: -72.2559'
+p0
+.S'Pre-training layer: 0epoch: 28mean: -72.1678'
+p0
+.S'Pre-training layer: 0epoch: 29mean: -72.1876'
+p0
+.S'Pre-training layer: 0epoch: 30mean: -72.1421'
+p0
+.S'Pre-training layer: 0epoch: 31mean: -72.1134'
+p0
+.S'Pre-training layer: 0epoch: 32mean: -72.0993'
+p0
+.S'Pre-training layer: 0epoch: 33mean: -72.0455'
+p0
+.S'Pre-training layer: 0epoch: 34mean: -72.0485'
+p0
+.S'Pre-training layer: 0epoch: 35mean: -71.9709'
+p0
+.S'Pre-training layer: 0epoch: 36mean: -72.004'
+p0
+.S'Pre-training layer: 0epoch: 37mean: -71.9672'
+p0
+.S'Pre-training layer: 0epoch: 38mean: -71.9691'
+p0
+.S'Pre-training layer: 0epoch: 39mean: -71.9714'
+p0
+.S'Pre-training layer: 0epoch: 40mean: -71.9419'
+p0
+.S'Pre-training layer: 0epoch: 41mean: -71.918'
+p0
+.S'Pre-training layer: 0epoch: 42mean: -71.8681'
+p0
+.S'Pre-training layer: 0epoch: 43mean: -71.8483'
+p0
+.S'Pre-training layer: 0epoch: 44mean: -71.8525'
+p0
+.S'Pre-training layer: 0epoch: 45mean: -71.8497'
+p0
+.S'Pre-training layer: 0epoch: 46mean: -71.7986'
+p0
+.S'Pre-training layer: 0epoch: 47mean: -71.7858'
+p0
+.S'Pre-training layer: 0epoch: 48mean: -71.7908'
+p0
+.S'Pre-training layer: 0epoch: 49mean: -71.8157'
+p0
+.S'Pre-training layer: 0epoch: 50mean: -71.7689'
+p0
+.S'Pre-training layer: 0epoch: 51mean: -71.762'
+p0
+.S'Pre-training layer: 0epoch: 52mean: -71.7314'
+p0
+.S'Pre-training layer: 0epoch: 53mean: -71.7538'
+p0
+.S'Pre-training layer: 0epoch: 54mean: -71.7148'
+p0
+.S'Pre-training layer: 0epoch: 55mean: -71.7318'
+p0
+.S'Pre-training layer: 0epoch: 56mean: -71.7131'
+p0
+.S'Pre-training layer: 0epoch: 57mean: -71.7164'
+p0
+.S'Pre-training layer: 0epoch: 58mean: -71.6899'
+p0
+.S'Pre-training layer: 0epoch: 59mean: -71.661'
+p0
+.S'Pre-training layer: 0epoch: 60mean: -71.6564'
+p0
+.S'Pre-training layer: 0epoch: 61mean: -71.6525'
+p0
+.S'Pre-training layer: 0epoch: 62mean: -71.6391'
+p0
+.S'Pre-training layer: 0epoch: 63mean: -71.6648'
+p0
+.S'Pre-training layer: 0epoch: 64mean: -71.6598'
+p0
+.S'Pre-training layer: 0epoch: 65mean: -71.6339'
+p0
+.S'Pre-training layer: 0epoch: 66mean: -71.6634'
+p0
+.S'Pre-training layer: 0epoch: 67mean: -71.6161'
+p0
+.S'Pre-training layer: 0epoch: 68mean: -71.6518'
+p0
+.S'Pre-training layer: 0epoch: 69mean: -71.6029'
+p0
+.S'Pre-training layer: 0epoch: 70mean: -71.5915'
+p0
+.S'Pre-training layer: 0epoch: 71mean: -71.5879'
+p0
+.S'Pre-training layer: 0epoch: 72mean: -71.6169'
+p0
+.S'Pre-training layer: 0epoch: 73mean: -71.6117'
+p0
+.S'Pre-training layer: 0epoch: 74mean: -71.5791'
+p0
+.S'Pre-training layer: 0epoch: 75mean: -71.5546'
+p0
+.S'Pre-training layer: 0epoch: 76mean: -71.5537'
+p0
+.S'Pre-training layer: 0epoch: 77mean: -71.5596'
+p0
+.S'Pre-training layer: 0epoch: 78mean: -71.5546'
+p0
+.S'Pre-training layer: 0epoch: 79mean: -71.5639'
+p0
+.S'Pre-training layer: 0epoch: 80mean: -71.5379'
+p0
+.S'Pre-training layer: 0epoch: 81mean: -71.5283'
+p0
+.S'Pre-training layer: 0epoch: 82mean: -71.5465'
+p0
+.S'Pre-training layer: 0epoch: 83mean: -71.5564'
+p0
+.S'Pre-training layer: 0epoch: 84mean: -71.5396'
+p0
+.S'Pre-training layer: 0epoch: 85mean: -71.5563'
+p0
+.S'Pre-training layer: 0epoch: 86mean: -71.5404'
+p0
+.S'Pre-training layer: 0epoch: 87mean: -71.5336'
+p0
+.S'Pre-training layer: 0epoch: 88mean: -71.54'
+p0
+.S'Pre-training layer: 0epoch: 89mean: -71.5389'
+p0
+.S'Pre-training layer: 0epoch: 90mean: -71.5202'
+p0
+.S'Pre-training layer: 0epoch: 91mean: -71.5107'
+p0
+.S'Pre-training layer: 0epoch: 92mean: -71.5074'
+p0
+.S'Pre-training layer: 0epoch: 93mean: -71.4818'
+p0
+.S'Pre-training layer: 0epoch: 94mean: -71.4688'
+p0
+.S'Pre-training layer: 0epoch: 95mean: -71.5118'
+p0
+.S'Pre-training layer: 0epoch: 96mean: -71.4597'
+p0
+.S'Pre-training layer: 0epoch: 97mean: -71.517'
+p0
+.S'Pre-training layer: 0epoch: 98mean: -71.5113'
+p0
+.S'Pre-training layer: 0epoch: 99mean: -71.4895'
+p0
+.S'Pre-training layer: 1epoch: 0mean: -42.8509'
+p0
+.S'Pre-training layer: 1epoch: 1mean: -36.3929'
+p0
+.S'Pre-training layer: 1epoch: 2mean: -34.7826'
+p0
+.S'Pre-training layer: 1epoch: 3mean: -33.834'
+p0
+.S'Pre-training layer: 1epoch: 4mean: -33.1477'
+p0
+.S'Pre-training layer: 1epoch: 5mean: -32.6508'
+p0
+.S'Pre-training layer: 1epoch: 6mean: -32.2801'
+p0
+.S'Pre-training layer: 1epoch: 7mean: -31.953'
+p0
+.S'Pre-training layer: 1epoch: 8mean: -31.7371'
+p0
+.S'Pre-training layer: 1epoch: 9mean: -31.5209'
+p0
+.S'Pre-training layer: 1epoch: 10mean: -31.347'
+p0
+.S'Pre-training layer: 1epoch: 11mean: -31.1763'
+p0
+.S'Pre-training layer: 1epoch: 12mean: -31.0822'
+p0
+.S'Pre-training layer: 1epoch: 13mean: -30.956'
+p0
+.S'Pre-training layer: 1epoch: 14mean: -30.8743'
+p0
+.S'Pre-training layer: 1epoch: 15mean: -30.775'
+p0
+.S'Pre-training layer: 1epoch: 16mean: -30.7091'
+p0
+.S'Pre-training layer: 1epoch: 17mean: -30.6256'
+p0
+.S'Pre-training layer: 1epoch: 18mean: -30.5853'
+p0
+.S'Pre-training layer: 1epoch: 19mean: -30.5228'
+p0
+.S'Pre-training layer: 1epoch: 20mean: -30.4825'
+p0
+.S'Pre-training layer: 1epoch: 21mean: -30.4255'
+p0
+.S'Pre-training layer: 1epoch: 22mean: -30.3664'
+p0
+.S'Pre-training layer: 1epoch: 23mean: -30.3425'
+p0
+.S'Pre-training layer: 1epoch: 24mean: -30.303'
+p0
+.S'Pre-training layer: 1epoch: 25mean: -30.2403'
+p0
+.S'Pre-training layer: 1epoch: 26mean: -30.2197'
+p0
+.S'Pre-training layer: 1epoch: 27mean: -30.1836'
+p0
+.S'Pre-training layer: 1epoch: 28mean: -30.153'
+p0
+.S'Pre-training layer: 1epoch: 29mean: -30.1209'
+p0
+.S'Pre-training layer: 1epoch: 30mean: -30.1115'
+p0
+.S'Pre-training layer: 1epoch: 31mean: -30.0865'
+p0
+.S'Pre-training layer: 1epoch: 32mean: -30.0605'
+p0
+.S'Pre-training layer: 1epoch: 33mean: -30.0703'
+p0
+.S'Pre-training layer: 1epoch: 34mean: -30.0289'
+p0
+.S'Pre-training layer: 1epoch: 35mean: -30.0107'
+p0
+.S'Pre-training layer: 1epoch: 36mean: -30.0013'
+p0
+.S'Pre-training layer: 1epoch: 37mean: -29.9612'
+p0
+.S'Pre-training layer: 1epoch: 38mean: -29.9752'
+p0
+.S'Pre-training layer: 1epoch: 39mean: -29.9547'
+p0
+.S'Pre-training layer: 1epoch: 40mean: -29.9154'
+p0
+.S'Pre-training layer: 1epoch: 41mean: -29.8915'
+p0
+.S'Pre-training layer: 1epoch: 42mean: -29.8892'
+p0
+.S'Pre-training layer: 1epoch: 43mean: -29.8839'
+p0
+.S'Pre-training layer: 1epoch: 44mean: -29.8719'
+p0
+.S'Pre-training layer: 1epoch: 45mean: -29.8672'
+p0
+.S'Pre-training layer: 1epoch: 46mean: -29.8571'
+p0
+.S'Pre-training layer: 1epoch: 47mean: -29.8544'
+p0
+.S'Pre-training layer: 1epoch: 48mean: -29.8158'
+p0
+.S'Pre-training layer: 1epoch: 49mean: -29.8068'
+p0
+.S'Pre-training layer: 1epoch: 50mean: -29.8292'
+p0
+.S'Pre-training layer: 1epoch: 51mean: -29.8145'
+p0
+.S'Pre-training layer: 1epoch: 52mean: -29.7868'
+p0
+.S'Pre-training layer: 1epoch: 53mean: -29.7841'
+p0
+.S'Pre-training layer: 1epoch: 54mean: -29.7815'
+p0
+.S'Pre-training layer: 1epoch: 55mean: -29.7682'
+p0
+.S'Pre-training layer: 1epoch: 56mean: -29.746'
+p0
+.S'Pre-training layer: 1epoch: 57mean: -29.7448'
+p0
+.S'Pre-training layer: 1epoch: 58mean: -29.7222'
+p0
+.S'Pre-training layer: 1epoch: 59mean: -29.7347'
+p0
+.S'Pre-training layer: 1epoch: 60mean: -29.7322'
+p0
+.S'Pre-training layer: 1epoch: 61mean: -29.7201'
+p0
+.S'Pre-training layer: 1epoch: 62mean: -29.7162'
+p0
+.S'Pre-training layer: 1epoch: 63mean: -29.7045'
+p0
+.S'Pre-training layer: 1epoch: 64mean: -29.6717'
+p0
+.S'Pre-training layer: 1epoch: 65mean: -29.6968'
+p0
+.S'Pre-training layer: 1epoch: 66mean: -29.6641'
+p0
+.S'Pre-training layer: 1epoch: 67mean: -29.6647'
+p0
+.S'Pre-training layer: 1epoch: 68mean: -29.6814'
+p0
+.S'Pre-training layer: 1epoch: 69mean: -29.6587'
+p0
+.S'Pre-training layer: 1epoch: 70mean: -29.6792'
+p0
+.S'Pre-training layer: 1epoch: 71mean: -29.6408'
+p0
+.S'Pre-training layer: 1epoch: 72mean: -29.6289'
+p0
+.S'Pre-training layer: 1epoch: 73mean: -29.6368'
+p0
+.S'Pre-training layer: 1epoch: 74mean: -29.6392'
+p0
+.S'Pre-training layer: 1epoch: 75mean: -29.6275'
+p0
+.S'Pre-training layer: 1epoch: 76mean: -29.6104'
+p0
+.S'Pre-training layer: 1epoch: 77mean: -29.6272'
+p0
+.S'Pre-training layer: 1epoch: 78mean: -29.6113'
+p0
+.S'Pre-training layer: 1epoch: 79mean: -29.5969'
+p0
+.S'Pre-training layer: 1epoch: 80mean: -29.6033'
+p0
+.S'Pre-training layer: 1epoch: 81mean: -29.6211'
+p0
+.S'Pre-training layer: 1epoch: 82mean: -29.6119'
+p0
+.S'Pre-training layer: 1epoch: 83mean: -29.5863'
+p0
+.S'Pre-training layer: 1epoch: 84mean: -29.5843'
+p0
+.S'Pre-training layer: 1epoch: 85mean: -29.5783'
+p0
+.S'Pre-training layer: 1epoch: 86mean: -29.5599'
+p0
+.S'Pre-training layer: 1epoch: 87mean: -29.5854'
+p0
+.S'Pre-training layer: 1epoch: 88mean: -29.5771'
+p0
+.S'Pre-training layer: 1epoch: 89mean: -29.5724'
+p0
+.S'Pre-training layer: 1epoch: 90mean: -29.5648'
+p0
+.S'Pre-training layer: 1epoch: 91mean: -29.5575'
+p0
+.S'Pre-training layer: 1epoch: 92mean: -29.5574'
+p0
+.S'Pre-training layer: 1epoch: 93mean: -29.5735'
+p0
+.S'Pre-training layer: 1epoch: 94mean: -29.5413'
+p0
+.S'Pre-training layer: 1epoch: 95mean: -29.5329'
+p0
+.S'Pre-training layer: 1epoch: 96mean: -29.5121'
+p0
+.S'Pre-training layer: 1epoch: 97mean: -29.5564'
+p0
+.S'Pre-training layer: 1epoch: 98mean: -29.5388'
+p0
+.S'Pre-training layer: 1epoch: 99mean: -29.5247'
+p0
+.S'Pre-training layer: 2epoch: 0mean: -37.7284'
+p0
+.S'Pre-training layer: 2epoch: 1mean: -32.4646'
+p0
+.S'Pre-training layer: 2epoch: 2mean: -31.2647'
+p0
+.S'Pre-training layer: 2epoch: 3mean: -30.5721'
+p0
+.S'Pre-training layer: 2epoch: 4mean: -30.1113'
+p0
+.S'Pre-training layer: 2epoch: 5mean: -29.7288'
+p0
+.S'Pre-training layer: 2epoch: 6mean: -29.4944'
+p0
+.S'Pre-training layer: 2epoch: 7mean: -29.2733'
+p0
+.S'Pre-training layer: 2epoch: 8mean: -29.1147'
+p0
+.S'Pre-training layer: 2epoch: 9mean: -28.9498'
+p0
+.S'Pre-training layer: 2epoch: 10mean: -28.8014'
+p0
+.S'Pre-training layer: 2epoch: 11mean: -28.6821'
+p0
+.S'Pre-training layer: 2epoch: 12mean: -28.5866'
+p0
+.S'Pre-training layer: 2epoch: 13mean: -28.5163'
+p0
+.S'Pre-training layer: 2epoch: 14mean: -28.4011'
+p0
+.S'Pre-training layer: 2epoch: 15mean: -28.3746'
+p0
+.S'Pre-training layer: 2epoch: 16mean: -28.2697'
+p0
+.S'Pre-training layer: 2epoch: 17mean: -28.2254'
+p0
+.S'Pre-training layer: 2epoch: 18mean: -28.1599'
+p0
+.S'Pre-training layer: 2epoch: 19mean: -28.1156'
+p0
+.S'Pre-training layer: 2epoch: 20mean: -28.059'
+p0
+.S'Pre-training layer: 2epoch: 21mean: -28.0454'
+p0
+.S'Pre-training layer: 2epoch: 22mean: -28.0046'
+p0
+.S'Pre-training layer: 2epoch: 23mean: -27.9744'
+p0
+.S'Pre-training layer: 2epoch: 24mean: -27.9344'
+p0
+.S'Pre-training layer: 2epoch: 25mean: -27.8894'
+p0
+.S'Pre-training layer: 2epoch: 26mean: -27.8678'
+p0
+.S'Pre-training layer: 2epoch: 27mean: -27.8347'
+p0
+.S'Pre-training layer: 2epoch: 28mean: -27.8066'
+p0
+.S'Pre-training layer: 2epoch: 29mean: -27.7696'
+p0
+.S'Pre-training layer: 2epoch: 30mean: -27.7439'
+p0
+.S'Pre-training layer: 2epoch: 31mean: -27.7177'
+p0
+.S'Pre-training layer: 2epoch: 32mean: -27.7108'
+p0
+.S'Pre-training layer: 2epoch: 33mean: -27.6768'
+p0
+.S'Pre-training layer: 2epoch: 34mean: -27.6434'
+p0
+.S'Pre-training layer: 2epoch: 35mean: -27.6226'
+p0
+.S'Pre-training layer: 2epoch: 36mean: -27.5977'
+p0
+.S'Pre-training layer: 2epoch: 37mean: -27.5832'
+p0
+.S'Pre-training layer: 2epoch: 38mean: -27.5761'
+p0
+.S'Pre-training layer: 2epoch: 39mean: -27.5648'
+p0
+.S'Pre-training layer: 2epoch: 40mean: -27.5352'
+p0
+.S'Pre-training layer: 2epoch: 41mean: -27.5339'
+p0
+.S'Pre-training layer: 2epoch: 42mean: -27.5229'
+p0
+.S'Pre-training layer: 2epoch: 43mean: -27.4942'
+p0
+.S'Pre-training layer: 2epoch: 44mean: -27.4949'
+p0
+.S'Pre-training layer: 2epoch: 45mean: -27.4491'
+p0
+.S'Pre-training layer: 2epoch: 46mean: -27.4615'
+p0
+.S'Pre-training layer: 2epoch: 47mean: -27.4397'
+p0
+.S'Pre-training layer: 2epoch: 48mean: -27.4361'
+p0
+.S'Pre-training layer: 2epoch: 49mean: -27.4286'
+p0
+.S'Pre-training layer: 2epoch: 50mean: -27.4095'
+p0
+.S'Pre-training layer: 2epoch: 51mean: -27.3902'
+p0
+.S'Pre-training layer: 2epoch: 52mean: -27.3944'
+p0
+.S'Pre-training layer: 2epoch: 53mean: -27.3682'
+p0
+.S'Pre-training layer: 2epoch: 54mean: -27.3657'
+p0
+.S'Pre-training layer: 2epoch: 55mean: -27.3653'
+p0
+.S'Pre-training layer: 2epoch: 56mean: -27.3439'
+p0
+.S'Pre-training layer: 2epoch: 57mean: -27.3564'
+p0
+.S'Pre-training layer: 2epoch: 58mean: -27.3373'
+p0
+.S'Pre-training layer: 2epoch: 59mean: -27.3361'
+p0
+.S'Pre-training layer: 2epoch: 60mean: -27.2988'
+p0
+.S'Pre-training layer: 2epoch: 61mean: -27.2921'
+p0
+.S'Pre-training layer: 2epoch: 62mean: -27.2765'
+p0
+.S'Pre-training layer: 2epoch: 63mean: -27.2706'
+p0
+.S'Pre-training layer: 2epoch: 64mean: -27.2906'
+p0
+.S'Pre-training layer: 2epoch: 65mean: -27.2656'
+p0
+.S'Pre-training layer: 2epoch: 66mean: -27.2676'
+p0
+.S'Pre-training layer: 2epoch: 67mean: -27.2669'
+p0
+.S'Pre-training layer: 2epoch: 68mean: -27.2637'
+p0
+.S'Pre-training layer: 2epoch: 69mean: -27.251'
+p0
+.S'Pre-training layer: 2epoch: 70mean: -27.2471'
+p0
+.S'Pre-training layer: 2epoch: 71mean: -27.2551'
+p0
+.S'Pre-training layer: 2epoch: 72mean: -27.238'
+p0
+.S'Pre-training layer: 2epoch: 73mean: -27.2232'
+p0
+.S'Pre-training layer: 2epoch: 74mean: -27.2239'
+p0
+.S'Pre-training layer: 2epoch: 75mean: -27.2019'
+p0
+.S'Pre-training layer: 2epoch: 76mean: -27.2096'
+p0
+.S'Pre-training layer: 2epoch: 77mean: -27.202'
+p0
+.S'Pre-training layer: 2epoch: 78mean: -27.1962'
+p0
+.S'Pre-training layer: 2epoch: 79mean: -27.1805'
+p0
+.S'Pre-training layer: 2epoch: 80mean: -27.1868'
+p0
+.S'Pre-training layer: 2epoch: 81mean: -27.1821'
+p0
+.S'Pre-training layer: 2epoch: 82mean: -27.1703'
+p0
+.S'Pre-training layer: 2epoch: 83mean: -27.1836'
+p0
+.S'Pre-training layer: 2epoch: 84mean: -27.1694'
+p0
+.S'Pre-training layer: 2epoch: 85mean: -27.1715'
+p0
+.S'Pre-training layer: 2epoch: 86mean: -27.1572'
+p0
+.S'Pre-training layer: 2epoch: 87mean: -27.1451'
+p0
+.S'Pre-training layer: 2epoch: 88mean: -27.152'
+p0
+.S'Pre-training layer: 2epoch: 89mean: -27.168'
+p0
+.S'Pre-training layer: 2epoch: 90mean: -27.1401'
+p0
+.S'Pre-training layer: 2epoch: 91mean: -27.1362'
+p0
+.S'Pre-training layer: 2epoch: 92mean: -27.1249'
+p0
+.S'Pre-training layer: 2epoch: 93mean: -27.1435'
+p0
+.S'Pre-training layer: 2epoch: 94mean: -27.1331'
+p0
+.S'Pre-training layer: 2epoch: 95mean: -27.1149'
+p0
+.S'Pre-training layer: 2epoch: 96mean: -27.1185'
+p0
+.S'Pre-training layer: 2epoch: 97mean: -27.1314'
+p0
+.S'Pre-training layer: 2epoch: 98mean: -27.1306'
+p0
+.S'Pre-training layer: 2epoch: 99mean: -27.1092'
+p0
+.S'Pre-training layer: 3epoch: 0mean: -30.6261'
+p0
+.S'Pre-training layer: 3epoch: 1mean: -25.3615'
+p0
+.S'Pre-training layer: 3epoch: 2mean: -24.3891'
+p0
+.S'Pre-training layer: 3epoch: 3mean: -23.8305'
+p0
+.S'Pre-training layer: 3epoch: 4mean: -23.5112'
+p0
+.S'Pre-training layer: 3epoch: 5mean: -23.2011'
+p0
+.S'Pre-training layer: 3epoch: 6mean: -22.991'
+p0
+.S'Pre-training layer: 3epoch: 7mean: -22.8413'
+p0
+.S'Pre-training layer: 3epoch: 8mean: -22.6989'
+p0
+.S'Pre-training layer: 3epoch: 9mean: -22.582'
+p0
+.S'Pre-training layer: 3epoch: 10mean: -22.4738'
+p0
+.S'Pre-training layer: 3epoch: 11mean: -22.385'
+p0
+.S'Pre-training layer: 3epoch: 12mean: -22.3221'
+p0
+.S'Pre-training layer: 3epoch: 13mean: -22.2441'
+p0
+.S'Pre-training layer: 3epoch: 14mean: -22.2177'
+p0
+.S'Pre-training layer: 3epoch: 15mean: -22.143'
+p0
+.S'Pre-training layer: 3epoch: 16mean: -22.0955'
+p0
+.S'Pre-training layer: 3epoch: 17mean: -22.0544'
+p0
+.S'Pre-training layer: 3epoch: 18mean: -22.0088'
+p0
+.S'Pre-training layer: 3epoch: 19mean: -21.9854'
+p0
+.S'Pre-training layer: 3epoch: 20mean: -21.9448'
+p0
+.S'Pre-training layer: 3epoch: 21mean: -21.9143'
+p0
+.S'Pre-training layer: 3epoch: 22mean: -21.8925'
+p0
+.S'Pre-training layer: 3epoch: 23mean: -21.8384'
+p0
+.S'Pre-training layer: 3epoch: 24mean: -21.8273'
+p0
+.S'Pre-training layer: 3epoch: 25mean: -21.7976'
+p0
+.S'Pre-training layer: 3epoch: 26mean: -21.7889'
+p0
+.S'Pre-training layer: 3epoch: 27mean: -21.7984'
+p0
+.S'Pre-training layer: 3epoch: 28mean: -21.7427'
+p0
+.S'Pre-training layer: 3epoch: 29mean: -21.7237'
+p0
+.S'Pre-training layer: 3epoch: 30mean: -21.7076'
+p0
+.S'Pre-training layer: 3epoch: 31mean: -21.6909'
+p0
+.S'Pre-training layer: 3epoch: 32mean: -21.6736'
+p0
+.S'Pre-training layer: 3epoch: 33mean: -21.6661'
+p0
+.S'Pre-training layer: 3epoch: 34mean: -21.6352'
+p0
+.S'Pre-training layer: 3epoch: 35mean: -21.637'
+p0
+.S'Pre-training layer: 3epoch: 36mean: -21.6098'
+p0
+.S'Pre-training layer: 3epoch: 37mean: -21.5991'
+p0
+.S'Pre-training layer: 3epoch: 38mean: -21.6121'
+p0
+.S'Pre-training layer: 3epoch: 39mean: -21.569'
+p0
+.S'Pre-training layer: 3epoch: 40mean: -21.5687'
+p0
+.S'Pre-training layer: 3epoch: 41mean: -21.5573'
+p0
+.S'Pre-training layer: 3epoch: 42mean: -21.5374'
+p0
+.S'Pre-training layer: 3epoch: 43mean: -21.5427'
+p0
+.S'Pre-training layer: 3epoch: 44mean: -21.5304'
+p0
+.S'Pre-training layer: 3epoch: 45mean: -21.5176'
+p0
+.S'Pre-training layer: 3epoch: 46mean: -21.5168'
+p0
+.S'Pre-training layer: 3epoch: 47mean: -21.5142'
+p0
+.S'Pre-training layer: 3epoch: 48mean: -21.4811'
+p0
+.S'Pre-training layer: 3epoch: 49mean: -21.4807'
+p0
+.S'Pre-training layer: 3epoch: 50mean: -21.4785'
+p0
+.S'Pre-training layer: 3epoch: 51mean: -21.4694'
+p0
+.S'Pre-training layer: 3epoch: 52mean: -21.4648'
+p0
+.S'Pre-training layer: 3epoch: 53mean: -21.4726'
+p0
+.S'Pre-training layer: 3epoch: 54mean: -21.4677'
+p0
+.S'Pre-training layer: 3epoch: 55mean: -21.4501'
+p0
+.S'Pre-training layer: 3epoch: 56mean: -21.4426'
+p0
+.S'Pre-training layer: 3epoch: 57mean: -21.4345'
+p0
+.S'Pre-training layer: 3epoch: 58mean: -21.4443'
+p0
+.S'Pre-training layer: 3epoch: 59mean: -21.4204'
+p0
+.S'Pre-training layer: 3epoch: 60mean: -21.414'
+p0
+.S'Pre-training layer: 3epoch: 61mean: -21.4174'
+p0
+.S'Pre-training layer: 3epoch: 62mean: -21.4127'
+p0
+.S'Pre-training layer: 3epoch: 63mean: -21.4024'
+p0
+.S'Pre-training layer: 3epoch: 64mean: -21.4192'
+p0
+.S'Pre-training layer: 3epoch: 65mean: -21.3924'
+p0
+.S'Pre-training layer: 3epoch: 66mean: -21.3977'
+p0
+.S'Pre-training layer: 3epoch: 67mean: -21.3986'
+p0
+.S'Pre-training layer: 3epoch: 68mean: -21.378'
+p0
+.S'Pre-training layer: 3epoch: 69mean: -21.3766'
+p0
+.S'Pre-training layer: 3epoch: 70mean: -21.3682'
+p0
+.S'Pre-training layer: 3epoch: 71mean: -21.3716'
+p0
+.S'Pre-training layer: 3epoch: 72mean: -21.363'
+p0
+.S'Pre-training layer: 3epoch: 73mean: -21.3573'
 p0
 .

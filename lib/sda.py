@@ -1,5 +1,3 @@
-"""
-"""
 import os
 import sys
 import timeit
@@ -8,29 +6,35 @@ import numpy
 
 import theano
 import theano.tensor as T
-from theano.sandbox.rng_mrg import MRG_RandomStreams
+from theano.tensor.shared_randomstreams import RandomStreams
 
 from logistic_sgd import LogisticRegression, load_data
 from mlp import HiddenLayer
-from rbm import RBM
-import pickle
+from dA import dA
 
 
 # start-snippet-1
-class DBN(object):
-    """Deep Belief Network
+class SdA(object):
+    """Stacked denoising auto-encoder class (SdA)
 
-    A deep belief network is obtained by stacking several RBMs on top of each
-    other. The hidden layer of the RBM at layer `i` becomes the input of the
-    RBM at layer `i+1`. The first layer RBM gets as input the input of the
-    network, and the hidden layer of the last RBM represents the output. When
-    used for classification, the DBN is treated as a MLP, by adding a logistic
-    regression layer on top.
+    A stacked denoising autoencoder model is obtained by stacking several
+    dAs. The hidden layer of the dA at layer `i` becomes the input of
+    the dA at layer `i+1`. The first layer dA gets as input the input of
+    the SdA, and the hidden layer of the last dA represents the output.
+    Note that after pretraining, the SdA is dealt with as a normal MLP,
+    the dAs are only used to initialize the weights.
     """
-    
-    def __init__(self, numpy_rng, theano_rng=None, n_ins=784,
-                 hidden_layers_sizes=[500, 500], n_outs=10):
-        """This class is made to support a variable number of layers.
+
+    def __init__(
+        self,
+        numpy_rng,
+        theano_rng=None,
+        n_ins=784,
+        hidden_layers_sizes=[500, 500],
+        n_outs=10,
+        corruption_levels=[0.1, 0.1]
+    ):
+        """ This class is made to support a variable number of layers.
 
         :type numpy_rng: numpy.random.RandomState
         :param numpy_rng: numpy random number generator used to draw initial
@@ -41,55 +45,59 @@ class DBN(object):
                            generated based on a seed drawn from `rng`
 
         :type n_ins: int
-        :param n_ins: dimension of the input to the DBN
+        :param n_ins: dimension of the input to the sdA
 
-        :type hidden_layers_sizes: list of ints
-        :param hidden_layers_sizes: intermediate layers size, must contain
+        :type n_layers_sizes: list of ints
+        :param n_layers_sizes: intermediate layers size, must contain
                                at least one value
 
         :type n_outs: int
         :param n_outs: dimension of the output of the network
+
+        :type corruption_levels: list of float
+        :param corruption_levels: amount of corruption to use for each
+                                  layer
         """
 
         self.sigmoid_layers = []
-        self.rbm_layers = []
+        self.dA_layers = []
         self.params = []
         self.n_layers = len(hidden_layers_sizes)
 
         assert self.n_layers > 0
 
         if not theano_rng:
-            theano_rng = MRG_RandomStreams(numpy_rng.randint(2 ** 30))
-
+            theano_rng = RandomStreams(numpy_rng.randint(2 ** 30))
         # allocate symbolic variables for the data
         self.x = T.matrix('x')  # the data is presented as rasterized images
-        self.y = T.ivector('y')  # the labels are presented as 1D vector
-                                 # of [int] labels
+        self.y = T.ivector('y')  # the labels are presented as 1D vector of
+                                 # [int] labels
         # end-snippet-1
-        # The DBN is an MLP, for which all weights of intermediate
-        # layers are shared with a different RBM.  We will first
-        # construct the DBN as a deep multilayer perceptron, and when
-        # constructing each sigmoidal layer we also construct an RBM
-        # that shares weights with that layer. During pretraining we
-        # will train these RBMs (which will lead to chainging the
-        # weights of the MLP as well) During finetuning we will finish
-        # training the DBN by doing stochastic gradient descent on the
-        # MLP.
 
+        # The SdA is an MLP, for which all weights of intermediate layers
+        # are shared with a different denoising autoencoders
+        # We will first construct the SdA as a deep multilayer perceptron,
+        # and when constructing each sigmoidal layer we also construct a
+        # denoising autoencoder that shares weights with that layer
+        # During pretraining we will train these autoencoders (which will
+        # lead to chainging the weights of the MLP as well)
+        # During finetunining we will finish training the SdA by doing
+        # stochastich gradient descent on the MLP
+
+        # start-snippet-2
         for i in xrange(self.n_layers):
             # construct the sigmoidal layer
 
-            # the size of the input is either the number of hidden
-            # units of the layer below or the input size if we are on
-            # the first layer
+            # the size of the input is either the number of hidden units of
+            # the layer below or the input size if we are on the first layer
             if i == 0:
                 input_size = n_ins
             else:
                 input_size = hidden_layers_sizes[i - 1]
 
-            # the input to this layer is either the activation of the
-            # hidden layer below or the input of the DBN if you are on
-            # the first layer
+            # the input to this layer is either the activation of the hidden
+            # layer below or the input of the SdA if you are on the first
+            # layer
             if i == 0:
                 layer_input = self.x
             else:
@@ -100,86 +108,88 @@ class DBN(object):
                                         n_in=input_size,
                                         n_out=hidden_layers_sizes[i],
                                         activation=T.nnet.sigmoid)
-
             # add the layer to our list of layers
             self.sigmoid_layers.append(sigmoid_layer)
-
-            # its arguably a philosophical question...  but we are
-            # going to only declare that the parameters of the
-            # sigmoid_layers are parameters of the DBN. The visible
-            # biases in the RBM are parameters of those RBMs, but not
-            # of the DBN.
+            # its arguably a philosophical question...
+            # but we are going to only declare that the parameters of the
+            # sigmoid_layers are parameters of the StackedDAA
+            # the visible biases in the dA are parameters of those
+            # dA, but not the SdA
             self.params.extend(sigmoid_layer.params)
 
-            # Construct an RBM that shared weights with this layer
-            rbm_layer = RBM(numpy_rng=numpy_rng,
-                            theano_rng=theano_rng,
-                            input=layer_input,
-                            n_visible=input_size,
-                            n_hidden=hidden_layers_sizes[i],
-                            W=sigmoid_layer.W,
-                            hbias=sigmoid_layer.b)
-            self.rbm_layers.append(rbm_layer)
-
+            # Construct a denoising autoencoder that shared weights with this
+            # layer
+            dA_layer = dA(numpy_rng=numpy_rng,
+                          theano_rng=theano_rng,
+                          input=layer_input,
+                          n_visible=input_size,
+                          n_hidden=hidden_layers_sizes[i],
+                          W=sigmoid_layer.W,
+                          bhid=sigmoid_layer.b)
+            self.dA_layers.append(dA_layer)
+        # end-snippet-2
         # We now need to add a logistic layer on top of the MLP
         self.logLayer = LogisticRegression(
             input=self.sigmoid_layers[-1].output,
             n_in=hidden_layers_sizes[-1],
-            n_out=n_outs)
+            n_out=n_outs
+        )
+
         self.params.extend(self.logLayer.params)
+        # construct a function that implements one step of finetunining
 
-        # compute the cost for second phase of training, defined as the
-        # negative log likelihood of the logistic regression (output) layer
+        # compute the cost for second phase of training,
+        # defined as the negative log likelihood
         self.finetune_cost = self.logLayer.negative_log_likelihood(self.y)
-
         # compute the gradients with respect to the model parameters
         # symbolic variable that points to the number of errors made on the
         # minibatch given by self.x and self.y
         self.errors = self.logLayer.errors(self.y)
 
-    def pretraining_functions(self, train_set_x, batch_size, k):
-        '''Generates a list of functions, for performing one step of
-        gradient descent at a given layer. The function will require
-        as input the minibatch index, and to train an RBM you just
-        need to iterate, calling the corresponding function on all
-        minibatch indexes.
+    def pretraining_functions(self, train_set_x, batch_size):
+        ''' Generates a list of functions, each of them implementing one
+        step in trainnig the dA corresponding to the layer with same index.
+        The function will require as input the minibatch index, and to train
+        a dA you just need to iterate, calling the corresponding function on
+        all minibatch indexes.
 
         :type train_set_x: theano.tensor.TensorType
-        :param train_set_x: Shared var. that contains all datapoints used
-                            for training the RBM
+        :param train_set_x: Shared variable that contains all datapoints used
+                            for training the dA
+
         :type batch_size: int
         :param batch_size: size of a [mini]batch
-        :param k: number of Gibbs steps to do in CD-k / PCD-k
 
+        :type learning_rate: float
+        :param learning_rate: learning rate used during training for any of
+                              the dA layers
         '''
 
         # index to a [mini]batch
         index = T.lscalar('index')  # index to a minibatch
+        corruption_level = T.scalar('corruption')  # % of corruption to use
         learning_rate = T.scalar('lr')  # learning rate to use
-
-        # number of batches
-        n_batches = train_set_x.get_value(borrow=True).shape[0] / batch_size
         # begining of a batch, given `index`
         batch_begin = index * batch_size
         # ending of a batch given `index`
         batch_end = batch_begin + batch_size
 
         pretrain_fns = []
-        for rbm in self.rbm_layers:
-
+        for dA in self.dA_layers:
             # get the cost and the updates list
-            # using CD-k here (persisent=None) for training each RBM.
-            # TODO: change cost function to reconstruction error
-            cost, updates = rbm.get_cost_updates(learning_rate,
-                                                 persistent=None, k=k)
-
+            cost, updates = dA.get_cost_updates(corruption_level,
+                                                learning_rate)
             # compile the theano function
             fn = theano.function(
-                inputs=[index, theano.Param(learning_rate, default=0.1)],
+                inputs=[
+                    index,
+                    theano.Param(corruption_level, default=0.2),
+                    theano.Param(learning_rate, default=0.1)
+                ],
                 outputs=cost,
                 updates=updates,
                 givens={
-                    self.x: train_set_x[batch_begin:batch_end]
+                    self.x: train_set_x[batch_begin: batch_end]
                 }
             )
             # append `fn` to the list of functions
@@ -189,36 +199,27 @@ class DBN(object):
 
     def build_finetune_functions(self, datasets, batch_size, learning_rate):
         '''Generates a function `train` that implements one step of
-        finetuning, a function `validate` that computes the error on a
-        batch from the validation set, and a function `test` that
+        finetuning, a function `validate` that computes the error on
+        a batch from the validation set, and a function `test` that
         computes the error on a batch from the testing set
 
         :type datasets: list of pairs of theano.tensor.TensorType
         :param datasets: It is a list that contain all the datasets;
-                        the has to contain three pairs, `train`,
-                        `valid`, `test` in this order, where each pair
-                        is formed of two Theano variables, one for the
-                        datapoints, the other for the labels
+                         the has to contain three pairs, `train`,
+                         `valid`, `test` in this order, where each pair
+                         is formed of two Theano variables, one for the
+                         datapoints, the other for the labels
+
         :type batch_size: int
         :param batch_size: size of a minibatch
+
         :type learning_rate: float
         :param learning_rate: learning rate used during finetune stage
-
         '''
 
         (train_set_x, train_set_y) = datasets[0]
         (valid_set_x, valid_set_y) = datasets[1]
         (test_set_x, test_set_y) = datasets[2]
-        
-        print train_set_x.get_value().shape
-        print valid_set_y.get_value().shape
-        
-        #train_set_x = datasets[0][0]
-        #train_set_y = datasets[0][1]
-        #valid_set_x = datasets[1][0]
-        #valid_set_y = datasets[1][1]
-        #test_set_x = datasets[2][0]
-        #test_set_y = datasets[2][1]
 
         # compute number of minibatches for training, validation and testing
         n_valid_batches = valid_set_x.get_value(borrow=True).shape[0]
@@ -232,9 +233,10 @@ class DBN(object):
         gparams = T.grad(self.finetune_cost, self.params)
 
         # compute list of fine-tuning updates
-        updates = []
-        for param, gparam in zip(self.params, gparams):
-            updates.append((param, param - gparam * learning_rate))
+        updates = [
+            (param, param - gparam * learning_rate)
+            for param, gparam in zip(self.params, gparams)
+        ]
 
         train_fn = theano.function(
             inputs=[index],
@@ -247,7 +249,8 @@ class DBN(object):
                 self.y: train_set_y[
                     index * batch_size: (index + 1) * batch_size
                 ]
-            }
+            },
+            name='train'
         )
 
         test_score_i = theano.function(
@@ -260,11 +263,10 @@ class DBN(object):
                 self.y: test_set_y[
                     index * batch_size: (index + 1) * batch_size
                 ]
-            }
+            },
+            name='test'
         )
-        
-        print valid_set_y.get_value().shape
-        
+
         valid_score_i = theano.function(
             [index],
             self.errors,
@@ -275,7 +277,8 @@ class DBN(object):
                 self.y: valid_set_y[
                     index * batch_size: (index + 1) * batch_size
                 ]
-            }
+            },
+            name='valid'
         )
 
         # Create a function that scans the entire validation set
@@ -287,8 +290,3 @@ class DBN(object):
             return [test_score_i(i) for i in xrange(n_test_batches)]
 
         return train_fn, valid_score, test_score
-
-    def save_DBN_state(path):
-        f = open(path, 'a+')
-        pickle.dump(self.params , f);
-        f.close()
