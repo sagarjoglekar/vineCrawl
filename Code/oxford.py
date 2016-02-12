@@ -53,8 +53,8 @@ def vision1(url, rlt_dir, suffix):
 	   data = response.read()
 	   conn.close()
 	except Exception as e:
-        print e
-	    print("[Errno {0}] {1}".format(e.errno, e.strerror))
+	   print e
+	   print("[Errno {0}] {1}".format(e.errno, e.strerror))
 	save_json(data, rlt_dir+'vision', suffix)
 def vision(url, rlt_dir, suffix):
 	cmd = '''curl -sS 'https://www.projectoxford.ai/api/ForwardProxy/Analysis' -H 'Cookie: ai_user=16f3149b7e95429e89f756a5219a27f0|2015-07-01T09:28:44.1296046+00:00; ARRAffinity=3c256ddb5417a7e2c7bd5912d5dc15d26185f789b9f9ae2b5016c7c9540f33ad; __RequestVerificationToken=tMxL7bm1k8k_EXlF-5VP_kP_cwVsq95SVODmMObZyY30wPaRcHE-47I8IB5LadZzeMTeh5Qxna9QWwIzv6kPBkGk_8B_6jymcGAaUpE03d01; ai_session=02b09a2644944b0b9a22fe9c2f440d90|2015-07-13T15:16:50.0518800+00:00|2015-07-13T15:16:50.0830820+00:00' -H 'Origin: https://www.projectoxford.ai' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Linux i686 (x86_64)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36' -H 'Content-Type: application/json' -H 'Accept: */*' -H 'Referer: https://www.projectoxford.ai/demo/visions' -H 'X-Requested-With: XMLHttpRequest' -H 'Connection: keep-alive' -H '__RequestVerificationToken: PaErq3k3eAelDv05yMJAqrX3HakmraC_fEJIuTFt7jI6KvnGFFkL0slJ_QqRjx2v086xUfvu-TNns6a3GDzaSGoeilqd-sGXOlFpYxgYSuw1' --data-binary '{"Url":"%s"}' --compressed '''%url
