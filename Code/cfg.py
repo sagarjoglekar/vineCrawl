@@ -1,5 +1,5 @@
 
-log_dir = '/home/k1206443/data/about.me_oxford/facebook/log/'
+log_dir = '/work/sagarj/Work/vineCrawl/Logs'
 
 vision_start_num = 0
 vision_process_num = 50 
