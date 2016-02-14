@@ -13,9 +13,39 @@ import requests
 import os
 import wget
 import pickle
+import cv2
 
-visitedList = "facesVisited.data"
-root ="../Data"
+visitedList = "../Logs/facesVisited.data"
+root ="../Data/"
+faces = "faces"
+
+face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_frontalface_default.xml')
+
+
+def process_frame(frame, storeDir):
+        print frame.shape
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        cv2.waitKey(20)
+        faces = []
+        faces = face_cascade.detectMultiScale(frame, 1.3, 5)
+        print faces
+        if faces :
+            cv2.imwrite( storeDir , frame)
+        return frame
+
+def processVideo(videoPath , facesPath , postID):
+    storeDir = facesPath + "/" + postID
+    if not os.path.exists(faceDir):
+        os.makedirs(storeDir)
+    cap = cv2.VideoCapture(videoPath)
+    i = 0
+    while True:
+        ret, frame = cap.read()
+        cv2.waitKey(20)
+        imageName = storeDir + "/" + str(i) +".jpg"
+        process_frame(frame, imageName)
+        i += 1
+    
 
 def getVisited():
 	visited = []
@@ -50,22 +80,20 @@ def getPopularFile(rootDir):
 		data = json.load(f)
 		return data
 
-def getSocialData(popular , timeline , posts):
+def getFaces(popular , faces):
 		records = popular['data']['records']
+                vidPaths=[]
 		for i in range (0 , len(records)):
-			print "Getting Post data..."
-			#get Post data
 			postID = records[i]['postId']
-			postData = requests.get("https://api.vineapp.com/timelines/posts/"+str(postID))
-			post = open( posts + "/" + str(postID) + '.json', 'w')
-			json.dump(postData.json(), post)
-
-			#get USer Timeline
-			print "Getting User data..."
-			userId = records[i]['userId']
-			userData = requests.get("https://api.vineapp.com/timelines/users/"+str(userId)+"?size=50");
-			user = open( timeline + "/" + str(userId) + '.json', 'w')
-			json.dump(userData.json(), user)
+			postURL = records[i]['videoDashUrl']
+                        print "Post ID %d with url %s"% (postID, postURL)
+                        if(postURL != None):
+                            vidURL = postURL.split('//')
+                            URLPaths = vidURL[1].split('?')
+                            vidPath = URLPaths[0]
+                            vidPaths.append(vidPath)
+                            
+                return vidPaths
 
 
 
@@ -77,18 +105,16 @@ if __name__ == '__main__':
 	
 	for dir in dirs:
 		if dir not in visited:
-			timeline = root + dir + "/" + timeline
-			posts = root + dir + "/" + postData
+			faceDir = root + dir + "/" + faces
 
-			if not os.path.exists(posts):
-				os.makedirs(posts)
-			if not os.path.exists(timeline):
-				os.makedirs(timeline)
+			if not os.path.exists(faceDir):
+				os.makedirs(faceDir)
 			
 			dataRoot = root + dir
 			popular = getPopularFile(dataRoot)
 
-			getSocialData(popular , timeline , posts)
+			paths = getFaces(popular , faces)
+                        print paths
 
 			visited.append(dir)
 			updateVisited(visited)
