@@ -98,3 +98,26 @@ def faces(ntrain=28709,ntest=3589,onehot = True):
             teY[i] = np.int8(dataset.values[trainingBias+i][0])
         
     return trX,teX,trY,teY
+
+def getValData(ntrain=4178, onehot = True):
+    train = os.path.join(faces_dir,'kaggle2/train.csv')
+    train_dataset = pd.read_csv( train )
+    
+    if onehot:
+    
+        trX = np.zeros((ntrain,48*48),dtype=np.uint8)
+        trY = np.zeros((ntrain,7), dtype=np.int)
+        for i in range(0,ntrain ):
+            trX[i] = np.asarray(train_dataset.values[i][1].split(" ") , dtype=np.uint8)
+            label = train_dataset.values[i][0]
+            trY[i][label] = 1;
+     
+    else:
+        
+        trX = np.zeros((ntrain,48*48),dtype=np.uint8)
+        trY = np.zeros((ntrain,),dtype=np.uint8)
+        for i in range(0,ntrain ):
+            trX[i] = np.asarray(dataset.values[i][1].split(" ") , dtype=np.uint8)
+            trY[i] = np.int8(dataset.values[i][0])
+        
+    return trX ,trY
