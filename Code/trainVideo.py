@@ -38,7 +38,7 @@ if __name__ == '__main__':
     import sys
 
     print __doc__
-    face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_frontalface_default.xml')
     #eye_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_eye.xml')
 
     try: fn = sys.argv[1]
@@ -57,6 +57,7 @@ if __name__ == '__main__':
         return frame, t0
 
     threadn = cv2.getNumberOfCPUs()
+    print "Number of possible threads: " + str(threadn)
     pool = ThreadPool(processes = threadn)
     pending = deque()
 
@@ -74,7 +75,7 @@ if __name__ == '__main__':
             draw_str(res, (20, 20), "threaded      :  " + str(threaded_mode))
             draw_str(res, (20, 40), "latency        :  %.1f ms" % (latency.value*1000))
             draw_str(res, (20, 60), "frame interval :  %.1f ms" % (frame_interval.value*1000))
-            #cv2.imshow('threaded video', res)
+            cv2.imshow('threaded video', res)
         if len(pending) < threadn:
             ret, frame = cap.read()
             cv2.waitKey(40)

@@ -10,3 +10,8 @@ Channels
 nohup.out
 .ipynb_checkpoints/
 *.png
+*.pickle
+*.pkl
+3wolfmoon.jpg
+CKPlus
+KDEF
