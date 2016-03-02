@@ -21,15 +21,48 @@ faces = "faces"
 
 face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_frontalface_default.xml')
 
+def process_faces(frame):
+        #print frame.shape
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        cv2.waitKey(20)
+        face = []
+        face = face_cascade.detectMultiScale(frame, 1.3, 5)
+        if (len(face) > 0):
+            cropped = []
+            for i in range(len(face)):
+                cropped.append(gray[face[i][1]:face[i][1]+face[i][3] , face[i][0]:face[i][0]+face[i][2]])
+            return cropped
+        else :
+            return gray
+
+def scaleSquare(image ,shape):
+    resized = cv2.resize(image, shape, interpolation = cv2.INTER_AREA)
+    return resized
+
+def saveFaces(ImagePaths , faceFileName):
+    faceFile = faceFileName
+    faces =  []
+    i = 0
+    for path in ImagePaths:
+        image = cv2.imread(path)
+        cropped = process_faces(image)
+        if len(cropped) > 0:
+            for z in range(len(cropped)):
+                if len(faces == 0):
+                    faces = np.array(scaleSquare(cropped , (48 , 48)).flatten(), dtype=np.uint8)
+                else
+                    np.append(faces , scaleSquare(cropped , (48 , 48)).flatten() , axis = 0)
+    np.savetxt(faceFile, faces, delimiter=",")
 
 def process_frame(frame, storeDir):
         print frame.shape
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         cv2.waitKey(20)
         faces = []
-        faces = face_cascade.detectMultiScale(frame, 1.3, 5)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         print faces
-        if faces :
+        for i in range(len(faces)) :
+            
             cv2.imwrite( storeDir , frame)
         return frame
 
