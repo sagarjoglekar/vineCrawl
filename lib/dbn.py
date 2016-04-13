@@ -171,8 +171,11 @@ class DBN(object):
             # get the cost and the updates list
             # using CD-k here (persisent=None) for training each RBM.
             # TODO: change cost function to reconstruction error
+            persistent_chain = theano.shared(numpy.zeros((batch_size, n_hidden),
+                                                 dtype=theano.config.floatX),
+                                     borrow=True)
             cost, updates = rbm.get_cost_updates(learning_rate,
-                                                 persistent=None, k=k)
+                                                 persistent=persistent_chain, k=15)
 
             # compile the theano function
             fn = theano.function(
