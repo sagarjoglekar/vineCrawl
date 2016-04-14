@@ -11,14 +11,16 @@ import wget
 import pickle
 import cv2
 import numpy as np
+import cPickle
 
 
 visitedList = "../Logs/facesExtracted.data"
-root ="../vinedata/Data/"
+root = "../vinedata/Data/"
 faces = "faces"
 face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_frontalface_default.xml')
 selected = "popularVines.pkl"
-loopThreshold = 150000
+loopThreshold = 1
+faceNumber = "../Logs/numbersOfficial.pk"
 
 def scaleSquare(image ,shape):
     resized = cv2.resize(image, shape, interpolation = cv2.INTER_AREA)
@@ -47,22 +49,32 @@ def processVideo(videoPath , facesPath , postID):
         os.makedirs(storeDir)
     cap = cv2.VideoCapture(videoPath)
     videoFaces =  np.zeros((1,48*48) , dtype=np.uint8 )
+    totFrames = 0
+    faceFrames = 0
     i = 0
     while True:
         ret, frame = cap.read()
         if ret:
+            totFrames += 1
             cv2.waitKey(20)
             imageName = storeDir + "/" + str(i) +".jpg"
             cropped = process_frame(frame, imageName)
             if len(cropped) > 0:
+                faceFrames += 1
                 for z in range(len(cropped)):
                     temp = np.zeros((1,48*48) , dtype=np.uint8 )
                     temp[0] = scaleSquare(cropped[z] , (48 , 48)).flatten()
                     videoFaces = np.concatenate((videoFaces , temp ) , axis = 0)
                     print "Faces CSV shape : " + str(videoFaces.shape)
             i += 1
+            
         else:
             print "Done processing Video Number: %d , Saving csv"% postID
+            logline = str(postID) + "," + str(totFrames) + "," + str(faceFrames) + "," + str(videoFaces.shape[0])
+            print logline
+            f = open(faceNumber, 'a+')
+            cPickle.dump(logline , f);
+            f.close()
             np.savetxt(csvFaces, videoFaces, delimiter=",")
             break
     
@@ -131,6 +143,12 @@ def getFaces(popular , faces):
             vidPaths.append(vidPath)
             postIds.append(postID)                            
     return vidPaths, postIds
+
+
+def getVidPaths():
+    with open(vidpaths) as f:
+        content = f.readlines()
+    return content
 
 
 #MAin Loop: Runs only once and is reculated using Cron jobs
