@@ -59,7 +59,8 @@ class DBN(object):
         assert self.n_layers > 0
 
         if not theano_rng:
-            theano_rng = MRG_RandomStreams(numpy_rng.randint(2 ** 30))
+            rng = numpy.random.RandomState(123)
+            theano_rng = MRG_RandomStreams(rng.randint(2 ** 30))
 
         # allocate symbolic variables for the data
         self.x = T.matrix('x')  # the data is presented as rasterized images
@@ -95,7 +96,7 @@ class DBN(object):
             else:
                 layer_input = self.sigmoid_layers[-1].output
 
-            sigmoid_layer = HiddenLayer(rng=numpy_rng,
+            sigmoid_layer = HiddenLayer(rng=rng,
                                         input=layer_input,
                                         n_in=input_size,
                                         n_out=hidden_layers_sizes[i],
@@ -112,7 +113,7 @@ class DBN(object):
             self.params.extend(sigmoid_layer.params)
 
             # Construct an RBM that shared weights with this layer
-            rbm_layer = RBM(numpy_rng=numpy_rng,
+            rbm_layer = RBM(numpy_rng=rng,
                             theano_rng=theano_rng,
                             input=layer_input,
                             n_visible=input_size,
@@ -170,8 +171,11 @@ class DBN(object):
             # get the cost and the updates list
             # using CD-k here (persisent=None) for training each RBM.
             # TODO: change cost function to reconstruction error
+            persistent_chain = theano.shared(numpy.zeros((batch_size, n_hidden),
+                                                 dtype=theano.config.floatX),
+                                     borrow=True)
             cost, updates = rbm.get_cost_updates(learning_rate,
-                                                 persistent=None, k=k)
+                                                 persistent=persistent_chain, k=15)
 
             # compile the theano function
             fn = theano.function(
@@ -288,7 +292,7 @@ class DBN(object):
 
         return train_fn, valid_score, test_score
 
-    def save_DBN_state(path):
+    def save_DBN_state(self, path):
         f = open(path, 'a+')
         pickle.dump(self.params , f);
         f.close()

@@ -16,3 +16,11 @@ nohup.out
 CKPlus
 KDEF
 notebooks/ErrosCNN5LayersV2.log
+lib/utils
+otherwork
+_temp
+*.csv
+*.txt
+Logs/selfieSentibankANPS.pk
+Logs/selfieSentibankProbs.csv
+Logs/vineSentibankANPS.pk
