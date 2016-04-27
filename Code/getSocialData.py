@@ -15,8 +15,8 @@ import os
 import wget
 import pickle
 
-visitedList = "visited.data"
-root ="Data/"
+visitedList = "../Logs/visited2016.data"
+root ="/datasets/sagarj/vine2016/"
 timeline = "userTimeline"
 postData = "postData"
 

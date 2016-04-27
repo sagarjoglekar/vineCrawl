@@ -19,7 +19,7 @@ if __name__ == '__main__':
 	parser = parsePopular(procPool)
 
 	timeStamp = now_time()
-	rootDir = "Data/" + str(timeStamp)
+	rootDir = "/datasets/sagarj/vine2016/" + str(timeStamp)
 	os.makedirs(rootDir)
 	popular = crawler.getPopular(rootDir)		
 	procRegister = parser.decomposePopular(popular, rootDir)
