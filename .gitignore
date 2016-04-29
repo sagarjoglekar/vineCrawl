@@ -66,3 +66,5 @@ Logs/vinePaths.txt
 Logs/vineSentibankProbs.csv
 Logs/visited2016.data
 Logs/visited.data
+testImages/
+Logs/sampledFrames.pk
