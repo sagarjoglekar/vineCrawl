@@ -1,10 +1,5 @@
-
-*.json
-
 *.pyc
 Data
-
-*.data
 fer2013.csv
 Channels
 nohup.out
@@ -26,7 +21,6 @@ Logs/selfieSentibankProbs.csv
 Logs/vineSentibankANPS.pk
 python-data-utils
 Models
-Logs/classes.json
 Logs/denseCap_selfie.json
 Logs/denseCap_vine.json
 Logs/errorPickleDBN.pickle
@@ -43,7 +37,6 @@ Logs/ErrosCNN8Layers.pickle
 Logs/ErrosRBMFer.pickle
 Logs/eyesExtracted.data
 Logs/faceNumbersPass2.pk
-Logs/facesExtracted.data
 Logs/LikePredictionTraining2.pk
 Logs/LikePredictionTraining.pk
 Logs/LikesPredictionTraining_lognormal.pk
@@ -54,7 +47,6 @@ Logs/MsftTrainScores1.pkl
 Logs/MsftTrainScores2.pkl
 Logs/MsftTrainScores.pkl
 Logs/numbersOfficialeye.pk
-Logs/numbersOfficial.pk
 Logs/numbers.pk
 Logs/pbcopy
 Logs/RepostsPredictionTraining2.pk
@@ -67,4 +59,3 @@ Logs/vineSentibankProbs.csv
 Logs/visited2016.data
 Logs/visited.data
 testImages/
-Logs/sampledFrames.pk
