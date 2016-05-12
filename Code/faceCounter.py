@@ -166,7 +166,8 @@ if __name__ == '__main__':
             dataRoot = root + d
             popular = getPopularFile(dataRoot)
             selectedPosts = getPopularPosts(popular , selectedList)
-
+            visited.append(d)
+            updateVisited(visited)
             paths, posts = getFaces(popular , faces)
             for i in range(len(posts)):
                 if posts[i] in selectedPosts:
@@ -175,6 +176,4 @@ if __name__ == '__main__':
                         print "Processing Post ID %d with url %s"% (posts[i], paths[i])
                         processVideo(videoPath , faceDir , posts[i] , pool)
 
-            visited.append(d)
-            updateVisited(visited)
             break

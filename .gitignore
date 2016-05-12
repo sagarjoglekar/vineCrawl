@@ -59,3 +59,6 @@ Logs/vineSentibankProbs.csv
 Logs/visited2016.data
 Logs/visited.data
 testImages/
+samples/
+*.bkp
+*.log

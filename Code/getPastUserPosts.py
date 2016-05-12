@@ -64,6 +64,9 @@ def getVideos(usrProf, userId, vid ):
         os.makedirs(videoDir)
     if len(usrProf) < 2:
         return
+    if not isinstance(usrProf['data'],dict):
+        print "JSON Data not a dict"
+        return
     records = usrProf['data']['records']
     likes = []
     for record in records:
@@ -83,7 +86,9 @@ def getPostMeta(usrProf, userId , post ):
     print "Working on Post:  "  + postDir
     if not os.path.exists(postDir):
         os.makedirs(postDir)
-    
+    if not isinstance(usrProf['data'],dict):
+        print "JSON Data not a dict"
+        return
     records = usrProf['data']['records']
  
     for subRecord in records:
