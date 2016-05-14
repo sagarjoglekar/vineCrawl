@@ -62,3 +62,7 @@ testImages/
 samples/
 *.bkp
 *.log
+Logs/sampledvineImagenetObjs2015.pk
+Logs/sampledvineImagenetObjs2015_1.pk
+Logs/sampledvineSentibankANPS2015_2.pk
+Logs/sampledvineSentibankANPS2015_3.pk
