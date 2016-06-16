@@ -66,3 +66,12 @@ Logs/sampledvineImagenetObjs2015.pk
 Logs/sampledvineImagenetObjs2015_1.pk
 Logs/sampledvineSentibankANPS2015_2.pk
 Logs/sampledvineSentibankANPS2015_3.pk
+Logs/crawledPosts.pk
+Logs/crawledUsers.pk
+test_dir/
+python_image_features
+visual_features
+Logs/sampled_sentibank_labelledANPS.pk
+Logs/sampled_vine_ANPS_final.pk
+Logs/sentibank_baseline_ANPS_final.pk
+DeepSentibank

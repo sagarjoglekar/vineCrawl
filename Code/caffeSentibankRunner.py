@@ -4,12 +4,6 @@ import json
 import tables
 import cPickle as Pickle
 
-# set display defaults
-plt.rcParams['figure.figsize'] = (10, 10)        # large images
-plt.rcParams['image.interpolation'] = 'nearest'  # don't interpolate: show square pixels
-plt.rcParams['image.cmap'] = 'gray'  # use grayscale output rather than a (potentially misleading) color heatmap
-
-
 # The caffe module needs to be on the Python path;
 #  we'll add it here explicitly.
 import sys
@@ -37,9 +31,9 @@ model_weights = model_root + 'caffe_sentibank_train_iter_250000'
 imagenet_mean = model_root + 'imagenet_mean.binaryproto'
 classes = model_root + 'classes.json'
 
-imageListFile = imageRoot + 'test.txt'
-classprobs = "../Logs/sampledvineSentibankProbs2015_3.csv"
-labelFile = "../Logs/sampledvineSentibankANPS2015_3.pk"
+imageListFile = imageRoot + 'sampled_sentibank_labelled.txt'
+classprobs = "../Logs/sentibank_baseline_final.csv"
+labelFile = "../Logs/sentibank_baseline_ANPS_final.pk"
 
 imageList = []
 with open(imageListFile) as g:
@@ -54,16 +48,17 @@ net = caffe.Net(model_def,      # defines the structure of the model
                 model_weights,  # contains the trained weights
                 caffe.TEST)     # use test mode (e.g., don't perform dropout)
 
-transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
+transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape}) 
 transformer.set_transpose('data', (2,0,1))
 transformer.set_channel_swap('data', (2,1,0))
 transformer.set_raw_scale('data', 255.0)
 
 net.blobs['data'].reshape(1,3,227,227)
-
+matched = 0
 for line in imageList:
     
     path = line.split(' ')[0]
+    true_label = path.split('/')[5]
     im = caffe.io.load_image(path)
     net.blobs['data'].data[...] = transformer.preprocess('data', im)
     net.forward()
@@ -76,6 +71,9 @@ for line in imageList:
     for i in range(5):
         index = values.argmax()
         label = sentibankClasses[index]
+#         if str(label) == str(true_label):
+#             print "Matched!!!"
+#             matched+=1
         value = values.max()
         log = log + "," + label + "," + str(value)
         values[0][index] = 0.0
@@ -85,3 +83,4 @@ for line in imageList:
     f = open(labelFile, 'a+')
     Pickle.dump(log , f);
     f.close()
+print "Total matched labels : %d"%(matched)
