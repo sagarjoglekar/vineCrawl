@@ -75,3 +75,7 @@ Logs/sampled_sentibank_labelledANPS.pk
 Logs/sampled_vine_ANPS_final.pk
 Logs/sentibank_baseline_ANPS_final.pk
 DeepSentibank
+*,pk
+Autism_research_videos
+Logs/MVSO_vine_ANPs.pk
+Logs/MVSO_vine_ANPs_final.pk

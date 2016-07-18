@@ -8,6 +8,7 @@ import shutil
 
 posts = "../vinedata/posts.txt"
 sentimentFile = "../Logs/ANP_Sentiments.txt"
+revisedSentimentFile = "../Logs/revised_ANP_sentiments.csv"
 
 def getVisited(visitedList):
     visited = []
@@ -57,6 +58,18 @@ def readSentiments():
         arr = line.split(' ')
         ANP = arr[0]
         sentiment = float(arr[2].replace(']',''))
+        sentiDict[ANP] = sentiment
+    return sentiDict
+
+def readRevisedSentiments():
+    with open(revisedSentimentFile) as g:
+        List = g.readlines()
+    sentiList = List[1:]
+    sentiDict = dict()
+    for line in sentiList:
+        arr = line.split(',')
+        ANP = arr[0]
+        sentiment = float(arr[2])
         sentiDict[ANP] = sentiment
     return sentiDict
 

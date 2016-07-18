@@ -14,10 +14,11 @@ import caffe
 # If you get "No module named _caffe", either you have not built pycaffe or you have the wrong path.
 
 
-model_root = "/work/sagarj/Work/SentiBank/DeepSentiBank/"
+#model_root = "/work/sagarj/Work/SentiBank/DeepSentiBank/"
+model_root = "/work/sagarj/Work/SentiBank/english/"
 imageRoot = "/work/sagarj/Work/vineCrawl/Logs/"
 import os
-if os.path.isfile(model_root + 'caffe_sentibank_train_iter_250000'):
+if os.path.isfile(model_root + 'english_lr10_iter_210000.caffemodel'): #'caffe_sentibank_train_iter_250000'):
     print 'CaffeNet found.'
 else:
     print 'Cannot find model'
@@ -26,22 +27,34 @@ else:
 
 caffe.set_mode_gpu()
 
-model_def = model_root + 'test.prototxt'
-model_weights = model_root + 'caffe_sentibank_train_iter_250000'
+model_def = model_root + 'english_lr10_iter_210000.prototxt'#'test.prototxt'
+model_weights = model_root + 'english_lr10_iter_210000.caffemodel'#'caffe_sentibank_train_iter_250000'
 imagenet_mean = model_root + 'imagenet_mean.binaryproto'
-classes = model_root + 'classes.json'
+#classes = model_root + 'classes.json'
+classes = model_root + 'english_label.txt'
 
-imageListFile = imageRoot + 'sampled_sentibank_labelled.txt'
-classprobs = "../Logs/sentibank_baseline_final.csv"
-labelFile = "../Logs/sentibank_baseline_ANPS_final.pk"
+# imageListFile = imageRoot + 'sampled_sentibank_labelled.txt'
+# classprobs = "../Logs/sentibank_baseline_final.csv"
+# labelFile = "../Logs/sentibank_baseline_ANPS_final.pk"
+
+imageListFile = imageRoot + 'vine_samples.txt'
+classprobs = "../Logs/MVSO_vine_probs_final.csv"
+labelFile = "../Logs/MVSO_vine_ANPs_final.pk"
 
 imageList = []
 with open(imageListFile) as g:
     imageList = g.readlines()
 
+#JSON CLASSES 
+# f = open(classes ,'r')
+# sentibankClasses = json.load(f)
+# f.close()
+
+#Text classes for MVSO
 f = open(classes ,'r')
-sentibankClasses = json.load(f)
+sentibankClasses = f.readlines()
 f.close()
+
 print "Running Sentibank for %d Classes"%(len(sentibankClasses))
 
 net = caffe.Net(model_def,      # defines the structure of the model
@@ -62,12 +75,12 @@ for line in imageList:
     im = caffe.io.load_image(path)
     net.blobs['data'].data[...] = transformer.preprocess('data', im)
     net.forward()
-    out = net.blobs['prob']
+    out = net.blobs['prob'].data
     with open(classprobs,'a') as f_handle:
-        np.savetxt(f_handle, out.data , delimiter=',')
+        np.savetxt(f_handle, out , delimiter=',')
     log = path   
     # get Top 5 labels
-    values = out.data
+    values = out
     for i in range(5):
         index = values.argmax()
         label = sentibankClasses[index]
@@ -75,7 +88,7 @@ for line in imageList:
 #             print "Matched!!!"
 #             matched+=1
         value = values.max()
-        log = log + "," + label + "," + str(value)
+        log = log + "," + label.strip() + "," + str(value)
         values[0][index] = 0.0
     
     print log    
