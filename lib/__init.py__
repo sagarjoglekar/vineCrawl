@@ -8,3 +8,4 @@ from logistic_sgd import *
 from mlp import MLP
 from dA import *
 from sda import *
+form dataUtils import *
