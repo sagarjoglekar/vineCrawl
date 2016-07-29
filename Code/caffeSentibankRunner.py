@@ -37,9 +37,9 @@ classes = model_root + 'english_label.txt'
 # classprobs = "../Logs/sentibank_baseline_final.csv"
 # labelFile = "../Logs/sentibank_baseline_ANPS_final.pk"
 
-imageListFile = imageRoot + 'vine_samples.txt'
-classprobs = "../Logs/MVSO_vine_probs_final.csv"
-labelFile = "../Logs/MVSO_vine_ANPs_final.pk"
+imageListFile = imageRoot + 'labelled_finevineSamples.txt'
+classprobs = "../Logs/MVSO_fine_vine_probs.csv"
+labelFile = "../Logs/MVSO_fine_vine_ANPs.pk"
 
 imageList = []
 with open(imageListFile) as g:
@@ -71,7 +71,7 @@ matched = 0
 for line in imageList:
     
     path = line.split(' ')[0]
-    true_label = path.split('/')[5]
+    #true_label = path.split('/')[5]
     im = caffe.io.load_image(path)
     net.blobs['data'].data[...] = transformer.preprocess('data', im)
     net.forward()
