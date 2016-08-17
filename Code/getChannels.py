@@ -2,7 +2,10 @@
 #categories look something like this : 
 #            'comedy'                => 1,
 #            'art-and-experimental'  => 2,
+#            'cats'                  => 3,
+#            'dogs'                  => 4,
 #            'nature'                => 5,
+#            'urban'                 => 6,
 #            'family'                => 7,
 #            'special-fx'            => 8,
 #            'sports'                => 9,
@@ -11,6 +14,8 @@
 #            'beauty-and-fashion'    => 12,
 #            'health-and-fitness'    => 13,
 #            'news-and-politics'     => 14,
+#            'weird'                 => 15,
+#            'scary'                 => 16,
 #            'animals'               => 17
 # https://vine.co/api/timelines/channels/1/recent
 

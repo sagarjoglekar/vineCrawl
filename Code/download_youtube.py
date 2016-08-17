@@ -6,7 +6,7 @@ from subprocess import call
 viral_meta = "../Logs/viral_meta.csv"
 youtube_prefix = "https://www.youtube.com/watch?v="
 youtube_dir = "../Youtube_videos/"
-
+URLS = ["dfccrwUlROU","Q-TQQE1y68c","P5_Msrdg3Hk","vBkBS4O3yvY"]
 
 def readYouTubeMeta():
     with open(viral_meta) as g:
@@ -29,12 +29,12 @@ if __name__ == "__main__":
     metaLines = readYouTubeMeta()
     comedyIds = []
     comedyMeta = []
-    for line in metaLines:
-        if dequote(line.split(',')[3]) =='Comedy':
-            comedyMeta.append(line)
-            comedyIds.append(dequote(line.split(',')[0]))
+#     for line in metaLines:
+#         if dequote(line.split(',')[3]) =='Comedy':
+#             comedyMeta.append(line)
+#             comedyIds.append(dequote(line.split(',')[0]))
     
-    for Id in comedyIds:
+    for Id in URLS:#comedyIds:
         url = youtube_prefix + Id
         opPattern = youtube_dir +'%(id)s.mp4'
         command = ['youtube-dl', '-o' , opPattern, url]

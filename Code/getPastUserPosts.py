@@ -78,7 +78,7 @@ def getVideos(usrProf, userId, vid ):
             videoString = record['videoDashUrl']
             if videoString:
                 videoUrl = record['videoDashUrl'].split('?');
-                argsVideo = ['wget', '-r', '-l', '1', '-p', '-P' , videoDir, videoUrl[0]]
+                argsVideo = ['wget', '-r', '-nd' , '-l', '1', '-p', '-P' , videoDir, videoUrl[0]]
                 call(argsVideo);
 
 def getPostMeta(usrProf, userId , post ):
