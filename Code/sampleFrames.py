@@ -1,3 +1,5 @@
+#####SIMPLE UTILITY TO SAMPLE A LIST OF VIDEOS AT THEIR FRAM RATES INTO A KNOWN FOLDER #####################
+
 import re
 import datetime as dt
 from datetime import datetime
@@ -13,132 +15,81 @@ import cv2
 import numpy as np
 import cPickle
 import multiprocessing as mp
+import math
 
+root = "/datasets/sagarj/UnPopular2016/"
 
-visitedList = "../Logs/sampledVids.data"
-root = "../vinedata/Data/"
-faceStoreRoot = "../vinedata"
-#root = "../Data/"
-faces = "sampledFrames"
+post_dir = root + "Posts/"
+videos_dir = root + "Videos/"
+frame_dir = root + "AesthicSamples/"
 
-frameRate = 24
-
-selected = "sampledVines.pkl"
-loopThreshold = 0
-sampledLog = "../Logs/sampledFrames.pk"
+sampledLog = "../Logs/unPopularSamplingLog.txt"
 
 
 def sampleVideo(videoPath , facesPath , postID):
     cap = cv2.VideoCapture(videoPath)
+    #print videoPath
     totFrames = 0
     i = 0
+    framesRead = 0
+    framesSaved = 0
+    frameRate = cap.get(cv2.cv.CV_CAP_PROP_FPS)
+    if math.isnan(frameRate):
+        frameRate = 24
+    else:
+        frameRate = int(frameRate)
+    
+    frameRate = frameRate * 3
     while True:
         ret, frame = cap.read()
         if ret:
+            framesRead += 1
             procs = []
             totFrames += 1
             cv2.waitKey(20)
             if totFrames%frameRate == 0:
-                i = totFrames/frameRate
-                imageName = facesPath + "/" + str(postID)+"_"+str(i) +".jpg"
+                i = int(totFrames/frameRate)
+                framesSaved +=1
+                imageName = facesPath + "/" + str(postID) + "_" + str(i) + ".jpg"
                 cv2.imwrite( imageName , frame)
                 logline = str(postID) + "," + imageName
-                print logline
+                #print logline
                 logfile = open(sampledLog, 'a+')
                 cPickle.dump(logline , logfile);
                 logfile.close()
                 
         else:
-            print "Done processing Post: %d" %postID
-            break
+            print "Done processing Post: %s with %d frames Read  and %d saved at %d FPS"%(postID,framesRead,framesSaved,frameRate)
+            return framesSaved
 
-def getVisited():
-    visited = []
-    try:
-        f = open(visitedList, 'rb')
-        visited = pickle.load(f)
-    except IOError:
-        f = open(visitedList,"a+")
-        pickle.dump([],f)
-    return visited
-
-
-def updateVisited(visited):
-    with open(visitedList, 'wb') as f:
-        pickle.dump(visited, f)
-
-
-def walkLevel1Dir(root):
-    count = 0
-    dirList = []
-    filesList = []
-    for path, dirs, files in os.walk(root):
-        if count > 0:
-            return dirList , fileList
-        dirList = dirs
-        fileList = files
-        count = count + 1
-
-
-def getPopularFile(rootDir):
-    f = open(rootDir + '/popular.json' ,'r')
-    data = json.load(f)
+def readJson(path):
+    f = open(path)
+    data = json.loads(f.read())
     return data
 
-    
-    
-def getPopularPosts(popular):
-    records = popular['data']['records']
-    posts=[]
-    for i in range (0 , len(records)):
-        postID = records[i]['postId']
-        loopCount = records[i]['loops']['count']
-        if(loopCount > loopThreshold):
-            posts.append(postID)
+def getPosts(postsDir):
+    crawledPosts = os.listdir(postsDir)
+    posts = []
+    for post in crawledPosts:
+        record = readJson(postsDir + post)
+        p = record['data']
+        if isinstance(p,dict):
+            posts.append(p['records'][0])
     return posts
 
+def getMappingDict(postList):
+    mapping = dict()
+    for p in postList:
+        postId = p['postId']
+        vidName = p['videoUrl'].split('/')[5].split('?')[0]
+        mapping[postId] = vidName
+    return mapping
 
-
-def getVideoPaths(popular):
-    records = popular['data']['records']
-    vidPaths=[]
-    postIds=[]
-    for i in range (0 , len(records)):
-        postID = records[i]['postId']
-        postURL = records[i]['videoDashUrl']
-        if(postURL != None):
-            vidURL = postURL.split('//')
-            URLPaths = vidURL[1].split('?')
-            vidPath = URLPaths[0]
-            vidPaths.append(vidPath)
-            postIds.append(postID)                            
-    return vidPaths, postIds
-
-
-#MAin Loop: Runs only once and is reculated using Cron jobs
 if __name__ == '__main__':
-    dirs,files = walkLevel1Dir(root)
-    visited = getVisited()
     
-    for d in dirs:
-        if d not in visited:
-            faceDir = faceStoreRoot + "/" + faces
-            
-            if not os.path.exists(faceDir):
-                os.makedirs(faceDir)
-            
-            dataRoot = root + d
-            popular = getPopularFile(dataRoot)
-            selectedPosts = getPopularPosts(popular)
-
-            paths, posts = getVideoPaths(popular)
-            for i in range(len(posts)):
-                if posts[i] in selectedPosts:
-                    videoPath = root + d + "/videos/" + paths[i]
-                    if os.path.exists(videoPath):
-                        print "Sampling Post ID %d with url %s"% (posts[i], paths[i])
-                        sampleVideo(videoPath , faceDir , posts[i])
-
-            visited.append(d)
-            updateVisited(visited)
-            break
+    postList = getPosts(post_dir)
+    mappingDict = getMappingDict(postList)
+    
+    for k in mappingDict: 
+        postID = k
+        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,frame_dir , postID)
