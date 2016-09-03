@@ -15,17 +15,16 @@ import cPickle
 import multiprocessing as mp
 
 
-visitedList = "../Logs/faceCounted.data"
-root = "../vinedata/Data/"
-#root = "../Data/"
-faces = "faces"
+root = "/datasets/sagarj/UnPopular2016/"
+
+post_dir = root + "Posts/"
+videos_dir = root + "Videos/"
+frame_dir = root + "faces/"
 
 frontal_face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_frontalface_default.xml')
 profile_face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_profileface.xml')
 
-selected = "AllVines.pkl"
-loopThreshold = 0
-faceNumber = "../Logs/faceCounts.pk"
+faceNumber = "../Logs/unpopularFaceCounts.pk"
 
 
 def process_frontal(frame):
@@ -77,103 +76,37 @@ def processVideo(videoPath , facesPath , postID , pool):
             break
     
 
-def getVisited():
-    visited = []
-    try:
-        f = open(visitedList, 'rb')
-        visited = pickle.load(f)
-    except IOError:
-        f = open(visitedList,"a+")
-        pickle.dump([],f)
-    return visited
-
-
-def updateVisited(visited):
-    with open(visitedList, 'wb') as f:
-        pickle.dump(visited, f)
-
-
-def walkLevel1Dir(root):
-    count = 0
-    dirList = []
-    filesList = []
-    for path, dirs, files in os.walk(root):
-        if count > 0:
-            return dirList , fileList
-        dirList = dirs
-        fileList = files
-        count = count + 1
-
-
-def getPopularFile(rootDir):
-    f = open(rootDir + '/popular.json' ,'r')
-    data = json.load(f)
+def readJson(path):
+    f = open(path)
+    data = json.loads(f.read())
     return data
 
-    
-    
-def getPopularPosts(popular , listFile):
-    records = popular['data']['records']
-    posts=[]
-    for i in range (0 , len(records)):
-        postID = records[i]['postId']
-        loopCount = records[i]['loops']['count']
-        if(loopCount > loopThreshold):
-            posts.append(postID)
-    
-    with open(listFile, 'wb') as f:
-        pickle.dump(posts, f)
+def getPosts(postsDir):
+    crawledPosts = os.listdir(postsDir)
+    posts = []
+    for post in crawledPosts:
+        record = readJson(postsDir + post)
+        p = record['data']
+        if isinstance(p,dict):
+            posts.append(p['records'][0])
     return posts
 
-
-
-def getFaces(popular , faces):
-    records = popular['data']['records']
-    vidPaths=[]
-    postIds=[]
-    for i in range (0 , len(records)):
-        postID = records[i]['postId']
-        postURL = records[i]['videoDashUrl']
-        if(postURL != None):
-            vidURL = postURL.split('//')
-            URLPaths = vidURL[1].split('?')
-            vidPath = URLPaths[0]
-            vidPaths.append(vidPath)
-            postIds.append(postID)                            
-    return vidPaths, postIds
-
-
-def getVidPaths():
-    with open(vidpaths) as f:
-        content = f.readlines()
-    return content
+def getMappingDict(postList):
+    mapping = dict()
+    for p in postList:
+        postId = p['postId']
+        vidName = p['videoUrl'].split('/')[5].split('?')[0]
+        mapping[postId] = vidName
+    return mapping
 
 
 #MAin Loop: Runs only once and is reculated using Cron jobs
 if __name__ == '__main__':
-    dirs,files = walkLevel1Dir(root)
-    visited = getVisited()
-    pool = mp.Pool(processes=8) 
     
-    for d in dirs:
-        if d not in visited:
-            faceDir = root + d + "/" + faces
-            selectedList = faceDir + "/" + selected
-
-            if not os.path.exists(faceDir):
-                os.makedirs(faceDir)
-            
-            dataRoot = root + d
-            popular = getPopularFile(dataRoot)
-            selectedPosts = getPopularPosts(popular , selectedList)
-            visited.append(d)
-            updateVisited(visited)
-            paths, posts = getFaces(popular , faces)
-            for i in range(len(posts)):
-                if posts[i] in selectedPosts:
-                    videoPath = root + d + "/videos/" + paths[i]
-                    if os.path.exists(videoPath):
-                        print "Processing Post ID %d with url %s"% (posts[i], paths[i])
-                        processVideo(videoPath , faceDir , posts[i] , pool)
-
-            break
+    postList = getPosts(post_dir)
+    mappingDict = getMappingDict(postList)
+    pool = mp.Pool(processes=2) 
+    
+    for k in mappingDict: 
+        postID = k
+        processVideo(videos_dir+mappingDict[k] ,frame_dir , postID ,pool)

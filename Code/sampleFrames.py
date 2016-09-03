@@ -21,9 +21,9 @@ root = "/datasets/sagarj/UnPopular2016/"
 
 post_dir = root + "Posts/"
 videos_dir = root + "Videos/"
-frame_dir = root + "AesthicSamples/"
+frame_dir = root + "fineSamples/"
 
-sampledLog = "../Logs/unPopularSamplingLog.txt"
+sampledLog = "../Logs/unPopularFineSamplingLog.txt"
 
 
 def sampleVideo(videoPath , facesPath , postID):
@@ -38,8 +38,8 @@ def sampleVideo(videoPath , facesPath , postID):
         frameRate = 24
     else:
         frameRate = int(frameRate)
-    
-    frameRate = frameRate * 3
+
+    frameRate = int(frameRate/2)
     while True:
         ret, frame = cap.read()
         if ret:
