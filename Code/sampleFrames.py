@@ -17,16 +17,17 @@ import cPickle
 import multiprocessing as mp
 import math
 
-root = "/datasets/sagarj/UnPopular2016/"
+root = "/datasets/sagarj/UnPopular2016_senti/"
 
 post_dir = root + "Posts/"
 videos_dir = root + "Videos/"
 frame_dir = root + "fineSamples/"
+aesthetic_sample_dir = root + "AestheticSamples/"
 
-sampledLog = "../Logs/unPopularFineSamplingLog.txt"
+sampledLog = "../Logs/unPopularSentiFineSamplingLog.txt"
 
 
-def sampleVideo(videoPath , facesPath , postID):
+def sampleVideo(videoPath , facesPath , postID , rate):
     cap = cv2.VideoCapture(videoPath)
     #print videoPath
     totFrames = 0
@@ -34,12 +35,12 @@ def sampleVideo(videoPath , facesPath , postID):
     framesRead = 0
     framesSaved = 0
     frameRate = cap.get(cv2.cv.CV_CAP_PROP_FPS)
-    if math.isnan(frameRate):
-        frameRate = 24
-    else:
-        frameRate = int(frameRate)
 
-    frameRate = int(frameRate/2)
+    if math.isnan(frameRate):
+        frameRate = int(24 * rate)
+    frameRate = int(frameRate*rate)
+    if frameRate == 0:
+        frameRate = int(24 * rate)
     while True:
         ret, frame = cap.read()
         if ret:
@@ -92,4 +93,5 @@ if __name__ == '__main__':
     
     for k in mappingDict: 
         postID = k
-        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,frame_dir , postID)
+        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,frame_dir , postID , 0.5)
+        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,aesthetic_sample_dir , postID , 3)
