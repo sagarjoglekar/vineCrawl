@@ -19,9 +19,9 @@ import math
 import subprocess
 
 
-root = "/datasets/sagarj/UnPopular2016_senti/"
+root = "/datasets/sagarj/vineData/Dataset/"
 
-post_dir = root + "Posts/"
+post_dir = root + "savedPosts/"
 videos_dir = root + "Videos/"
 audio_dir = root + "Audio/"
 
@@ -31,7 +31,8 @@ def sampleAudio(videoPath , AudioPath , postID ):
     command1 = "ffmpeg -i "+ videoPath + " -ab 160k -ac 2 -ar 44100 -vn " + destPath + ".wav"
     command2 = "ffmpeg -i "+ videoPath + " " + destPath + ".mp3"
     ret1 = subprocess.call(command1, shell=True)
-    ret2 = subprocess.call(command2, shell=True)
+    #ret2 = subprocess.call(command2, shell=True)
+    ret2 = 1
     if ret1 != 0:
         print ".WAV extraction failed for post %s"%str(postID)
     elif ret2 != 0:
