@@ -17,7 +17,7 @@ import math
 
 root = "/datasets/sagarj/vine2016/Dataset/"
 post_dir = root + "savedPosts/"
-userProfile_Dir = root + "UserProfiles2/"
+userProfile_Dir = root + "UserProfiles3/"
 
 
 def getUserProfile(userID, profileDir):

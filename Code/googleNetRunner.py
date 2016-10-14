@@ -17,9 +17,9 @@ import caffe
 
 model_root = "../Models/"
 image_root = "../samples/"
-image_list = "../Logs/samplevinesSorted.txt"
-classprobs = "../Logs/sampledvineImagenetProbs2015_1.csv"
-labelFile = "../Logs/sampledvineImagenetObjs2015_1.pk"
+image_list = "../Logs/popular_vine_images.txt"
+classprobs = "../Logs/popular_Vine_imagenet_prob.csv"
+labelFile = "../Logs/popular_Vine_imagenet_labels.csv"
 
 
 import os
@@ -81,8 +81,15 @@ for line in imageList:
     with open(classprobs,'a') as f_handle:
         np.savetxt(f_handle, np.transpose(output_prob) , delimiter=',')
     print 'predicted class is:', output_prob.argmax()
-    log = path + ',label,' + labels[output_prob.argmax()]
+    log = path
+    top5Index = np.argsort(output_prob[0,:])[-5:][::-1]
+    print top5Index
+    for i in top5Index:
+        label = labels[i]
+        label = label.replace(',', '')
+        log = log + "," + label.strip()
     print log
+    log = log + "\n"
     f = open(labelFile, 'a+')
-    Pickle.dump(log , f);
+    f.write(log)
     f.close()
