@@ -17,9 +17,9 @@ import caffe
 
 model_root = "../Models/"
 image_root = "../samples/"
-image_list = "../Logs/popular_vine_images.txt"
-classprobs = "../Logs/popular_Vine_imagenet_prob.csv"
-labelFile = "../Logs/popular_Vine_imagenet_labels.csv"
+image_list = "../Logs/Flickr_frames.txt"
+classprobs = "../Logs/Flickr_imagenet_prob.csv"
+labelFile = "../Logs/Flickr_imagenet_labels.csv"
 
 
 import os
@@ -93,3 +93,4 @@ for line in imageList:
     f = open(labelFile, 'a+')
     f.write(log)
     f.close()
+print "Done Processing images !!!!"
