@@ -1,4 +1,4 @@
-#####SIMPLE UTILITY TO SAMPLE A LIST OF VIDEOS AT THEIR FRAM RATES INTO A KNOWN FOLDER #####################
+#####SIMPLE UTILITY TO SAMPLE .Wav files from videos in a folder #####################
 
 import re
 import datetime as dt

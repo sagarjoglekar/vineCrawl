@@ -21,10 +21,10 @@ root = "/datasets/sagarj/UnPopular2016_senti/"
 
 post_dir = root + "Posts/"
 videos_dir = root + "Videos/"
-frame_dir = root + "fineSamples/"
-aesthetic_sample_dir = root + "AestheticSamples/"
+#frame_dir = root + "AestheticSamples/"
+aesthetic_sample_dir = root + "newAesSamples/"
 
-sampledLog = "../Logs/unPopularSentiFineSamplingLog.txt"
+sampledLog = "../Logs/sampledUnpopSampling_aesthetic.txt"
 
 
 def sampleVideo(videoPath , facesPath , postID , rate):
@@ -93,5 +93,5 @@ if __name__ == '__main__':
     
     for k in mappingDict: 
         postID = k
-        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,frame_dir , postID , 0.5)
-        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,aesthetic_sample_dir , postID , 3)
+        #sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,frame_dir , postID , 1)
+        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,aesthetic_sample_dir , postID , 2)

@@ -37,9 +37,9 @@ classes = model_root + 'english_label.txt'
 # classprobs = "../Logs/sentibank_baseline_final.csv"
 # labelFile = "../Logs/sentibank_baseline_ANPS_final.pk"
 
-imageListFile = imageRoot + 'sentimentUnpopList.txt'
-classprobs = "../Logs/MVSO_unpopvine_probs.csv"
-labelFile = "../Logs/MVSO_unpopvine_ANPs.pk"
+imageListFile = imageRoot + 'MIRFlickrPaths.txt'
+classprobs = "../Logs/MVSO_Flickr_probs.csv"
+labelFile = "../Logs/MVSO_Flickr_ANPs.pk"
 
 imageList = []
 with open(imageListFile) as g:

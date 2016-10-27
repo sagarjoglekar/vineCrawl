@@ -13,18 +13,19 @@ import cv2
 import numpy as np
 import cPickle
 import multiprocessing as mp
+import math
 
 
-root = "/datasets/sagarj/vineData/Dataset/"
+root = "/datasets/sagarj/sampledVidsUnpop/"
 
-post_dir = root + "savedPosts/"
+post_dir = root + "Posts/"
 videos_dir = root + "Videos/"
 frame_dir = root + "faces/"
 
 frontal_face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_frontalface_default.xml')
 profile_face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_profileface.xml')
 
-faceNumber = "../Logs/popularFaceCounts.pk"
+faceNumber = "../Logs/unpopularThirdFaces.pk"
 
 
 def process_frontal(frame):
@@ -44,6 +45,17 @@ def process_profile(frame):
 
 def processVideo(videoPath , facesPath , postID , pool):
     cap = cv2.VideoCapture(videoPath)
+    rate = 2
+    framesRead = 0
+    thirdFaceNumbers = [0 , 0 ,0 , 0]
+    frameRate = cap.get(cv2.cv.CV_CAP_PROP_FPS)
+
+    if math.isnan(frameRate):
+        frameRate = int(24 * rate)
+    frameRate = int(frameRate*rate)
+    if frameRate == 0:
+        frameRate = int(24 * rate)
+        
     totFrames = 0
     flaggedFrames = 0
     faces = 0
@@ -52,6 +64,12 @@ def processVideo(videoPath , facesPath , postID , pool):
     while True:
         ret, frame = cap.read()
         if ret:
+            framesRead +=1 
+            if framesRead%frameRate == 0:
+                if i < 4:
+                    thirdFaceNumbers[i] = (float(flaggedFrames)/float(frameRate))
+                    i+=1
+                    flaggedFrames = 0
             procs = []
             totFrames += 1
             cv2.waitKey(20)
@@ -65,10 +83,11 @@ def processVideo(videoPath , facesPath , postID , pool):
             faces+= num_front
             profiles+=num_profile
             
+            
             if(num_front>0 or num_profile>0):
                 flaggedFrames+=1
         else:
-            logline = str(postID) + "," + str(totFrames) + "," + str(flaggedFrames) + "," + str(faces) + ","+ str(profiles)
+            logline = str(postID) + "," + str(thirdFaceNumbers[0]) + "," + str(thirdFaceNumbers[1]) + "," + str(thirdFaceNumbers[2]) + ","+ str(thirdFaceNumbers[3])
             print logline
             logfile = open(faceNumber, 'a+')
             cPickle.dump(logline , logfile);
