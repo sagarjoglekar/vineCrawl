@@ -17,17 +17,20 @@ import cPickle
 import multiprocessing as mp
 import math
 
-root = "/datasets/sagarj/UnPopular2016_senti/"
+root = "/datasets/sagarj/Pop2016/"
 
-post_dir = root + "Posts/"
-videos_dir = root + "Videos/"
-#frame_dir = root + "AestheticSamples/"
-aesthetic_sample_dir = root + "newAesSamples/"
+post_dir = root + "meta/"
+videos_dir = root + "videos/"
+frame_dir = root + "samples/"
+aesthetic_sample_dir = root + "AesSamples/"
 
-sampledLog = "../Logs/sampledUnpopSampling_aesthetic.txt"
+sampledLog = "../Logs/samplePopVids2016.txt"
 
 
 def sampleVideo(videoPath , facesPath , postID , rate):
+    if not os.path.exists(videoPath):
+        print "File Missing, skipping this one"
+        return
     cap = cv2.VideoCapture(videoPath)
     #print videoPath
     totFrames = 0
@@ -93,5 +96,5 @@ if __name__ == '__main__':
     
     for k in mappingDict: 
         postID = k
-        #sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,frame_dir , postID , 1)
+        sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,frame_dir , postID , 1)
         sampledNumbers = sampleVideo(videos_dir+mappingDict[k] ,aesthetic_sample_dir , postID , 2)

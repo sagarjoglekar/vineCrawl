@@ -16,16 +16,16 @@ import multiprocessing as mp
 import math
 
 
-root = "/datasets/sagarj/sampledVidsUnpop/"
+root = "/datasets/sagarj/Pop2016/"
 
-post_dir = root + "Posts/"
-videos_dir = root + "Videos/"
+post_dir = root + "meta/"
+videos_dir = root + "videos/"
 frame_dir = root + "faces/"
 
 frontal_face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_frontalface_default.xml')
 profile_face_cascade = cv2.CascadeClassifier('../haarcascades/haarcascade_profileface.xml')
 
-faceNumber = "../Logs/unpopularThirdFaces.pk"
+faceNumber = "../Logs/Pop2016Thirds.pk"
 
 
 def process_frontal(frame):
@@ -44,6 +44,9 @@ def process_profile(frame):
     return len(eyes)
 
 def processVideo(videoPath , facesPath , postID , pool):
+    if not os.path.exists(videoPath):
+        print "File Missing, skipping this one"
+        return
     cap = cv2.VideoCapture(videoPath)
     rate = 2
     framesRead = 0
